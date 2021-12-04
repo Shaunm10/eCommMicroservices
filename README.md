@@ -11,3 +11,32 @@ E-commerce Microservices implementation
 
 ##### Open a terminal to the container
 `> docker exec -it shopping-mongo /bin/bash`
+
+
+## Mongo Commands
+
+##### Show the local DB's
+`> show dbs`
+
+##### Creates a new catalog
+`> use CatalogDb`
+
+##### Creates a new catalog
+`> db.createCollection('Products')`
+
+##### Inserts Products ito a collection
+```
+> db.Products.insertMany(
+    [
+        {
+            "name":"value"
+        },
+        {
+            "name":"value"
+        },
+        {
+            "name":"value"
+        }
+    ]
+)
+```
