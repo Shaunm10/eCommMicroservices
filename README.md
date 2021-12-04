@@ -40,3 +40,8 @@ E-commerce Microservices implementation
     ]
 )
 ```
+
+## .net Core Commands
+
+#### Install a Nuget Package
+`> dotnet add package MongoDB.Driver --version 2.14.1`
