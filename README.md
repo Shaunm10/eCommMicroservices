@@ -45,3 +45,6 @@ E-commerce Microservices implementation
 
 #### Install a Nuget Package
 `> dotnet add package MongoDB.Driver --version 2.14.1`
+
+
+[Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
