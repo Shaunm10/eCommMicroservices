@@ -12,9 +12,9 @@ namespace Catalog.Api.Repositories
         {
             this._context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public Task CreateProduct(Product product)
+        public async Task CreateProduct(Product product)
         {
-            throw new NotImplementedException();
+            await this._context.Products.InsertOneAsync(product);
         }
 
         public Task<bool> DeleteProduct(string id)
@@ -30,14 +30,15 @@ namespace Catalog.Api.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public Task<Product> GetProductByCategory(string categoryName)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<Product> GetProductByName(string name)
+        public async Task<IEnumerable<Product>> GetProductsByName(string name)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Product>.Filter.Eq(p => p.Name, name);
+
+            return await this._context
+                .Products
+                .Find(filter)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> GetProducts()
@@ -46,9 +47,20 @@ namespace Catalog.Api.Repositories
                 .Products.Find(p => true).ToListAsync();
         }
 
-        public Task<bool> UpdateProduct(Product product)
+        public async Task<bool> UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            var updateResult = await this._context.Products.ReplaceOneAsync(p => p.Id == product.Id, replacement: product);
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsByCategory(string categoryName)
+        {
+            var filter = Builders<Product>.Filter.Eq(p => p.Category, categoryName);
+
+            return await this._context
+                .Products
+                .Find(filter)
+                .ToListAsync();
         }
     }
 }
