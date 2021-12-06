@@ -6,6 +6,9 @@ namespace Catalog.Api.Repositories
 {
     public class ProductRepository : IProductRepository
     {
+        /// <summary>
+        /// The MongoDb Driver
+        /// </summary>
         private readonly ICatalogContext _context;
 
         public ProductRepository(ICatalogContext context)
@@ -17,9 +20,13 @@ namespace Catalog.Api.Repositories
             await this._context.Products.InsertOneAsync(product);
         }
 
-        public Task<bool> DeleteProduct(string id)
+        public async Task<bool> DeleteProduct(string id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Product>.Filter.Eq(p => p.Id, id);
+            var result = await this._context.Products.DeleteOneAsync(filter);
+
+            //return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
+            return result.IsAcknowledged && result.DeletedCount > 0;
         }
 
         public async Task<Product> GetProduct(string id)
