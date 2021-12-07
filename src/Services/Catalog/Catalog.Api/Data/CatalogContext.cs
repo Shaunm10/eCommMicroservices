@@ -14,7 +14,7 @@ public class CatalogContext : ICatalogContext
 
         // seed data
         CatalogContextSeed.SeedData(this.Products);
-
     }
+
     public IMongoCollection<Product> Products { get; }
 }

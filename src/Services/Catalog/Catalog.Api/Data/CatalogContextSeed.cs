@@ -1,8 +1,8 @@
-using Catalog.Api.Entities;
-using MongoDB.Driver;
-
 namespace Catalog.Api.Data
 {
+    using Catalog.Api.Entities;
+    using MongoDB.Driver;
+
     internal class CatalogContextSeed
     {
         internal static void SeedData(IMongoCollection<Product> productsCollection)
