@@ -56,10 +56,17 @@ namespace Catalog.Api.Controllers
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
-            await _productRepository.CreateProduct(product);
+            await this._productRepository.CreateProduct(product);
 
-            return CreatedAtRoute("GetProducts", new { id = product.Id }, product);
+            return this.CreatedAtRoute("GetProducts", new { id = product.Id }, product);
 
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult> UpdateProduct([FromBody] Product product)
+        {
+            return this.Ok(await this._productRepository.UpdateProduct(product));
         }
     }
 }
