@@ -46,5 +46,9 @@ E-commerce Microservices implementation
 #### Install a Nuget Package
 `> dotnet add package MongoDB.Driver --version 2.14.1`
 
+## Docker Compose Commands
+
+#### Run the docker compose files
+`> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
