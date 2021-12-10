@@ -117,7 +117,7 @@ public class CatalogController_Should
         createdAtRouteResult.Should().NotBeNull();
         createdAtRouteResult?.StatusCode.Should().Be(201);
         createdAtRouteResult?.RouteName.Should().Be("GetProducts");
-        ((Product)createdAtRouteResult.Value).Id.Should().Be(productId);
+        (createdAtRouteResult?.Value as Product)?.Id.Should().Be(productId);
 
     }
 

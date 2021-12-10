@@ -6,7 +6,7 @@
     {
         Task<IEnumerable<Product>> GetProducts();
 
-        Task<Product> GetProduct(string id);
+        Task<Product?> GetProduct(string id);
 
         Task<IEnumerable<Product>> GetProductsByName(string name);
 

@@ -31,7 +31,7 @@
         }
 
         // Queries:
-        public async Task<Product> GetProduct(string id)
+        public async Task<Product?> GetProduct(string id)
         {
             return await this._context
                 .Products
