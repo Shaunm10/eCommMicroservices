@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Catalog.Api.Controllers;
+using Catalog.Api.Entities;
 using Catalog.Api.Repositories;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -29,13 +30,15 @@ public class CatalogController_Should
     public async Task GetProducts_From_GetProducts()
     {
         // arrange:
+        var products = new List<Product>();
+        this.productRepositoryMock.Setup(x => x.GetProducts()).ReturnsAsync(products);
 
         // act:
         var response = await this.controllerUnderTest.GetProducts();
 
         // assert:
         response.Should().NotBeNull();
-        //response.Value.Should.Be()
+        response.Result.Value.Should().BeSameAs(products);
     }
 
 
