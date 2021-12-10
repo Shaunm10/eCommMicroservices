@@ -56,7 +56,6 @@ namespace Catalog.Api.Controllers
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
             await this._repository.CreateProduct(product);
-
             return this.CreatedAtRoute("GetProducts", new { id = product.Id }, product);
         }
 

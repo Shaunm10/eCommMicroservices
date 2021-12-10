@@ -64,10 +64,11 @@ public class CatalogController_Should
     {
           // arrange:
         var productId = RandomValue.String();
-        var product = new Product();
+        Product? product = null;
+
         this.productRepositoryMock
             .Setup(x => x.GetProduct(productId))
-            .ReturnsAsync((Product)null);
+            .ReturnsAsync(product);
 
         // act:
         var response = await this.controllerUnderTest.GetProductsById(productId);
@@ -75,7 +76,7 @@ public class CatalogController_Should
         // assert:
         var notFoundResult = response?.Result as NotFoundResult;
         notFoundResult.Should().NotBeNull();
-        //this.loggerStub.Verify(x => x.LogError($"Product with id: {productId}, not found."), times: Times.Once);
+        //this.loggerStub.Verify(x => x.LogError("Product with id: "+productId +", not found."), times: Times.Once);
         
     }
 
@@ -96,6 +97,44 @@ public class CatalogController_Should
         var okResult = response?.Result as OkObjectResult;
         okResult.Should().NotBeNull();
         okResult?.Value.Should().BeSameAs(products);
+    }
+
+    [Fact]
+    public async Task ReturnsResult_From_CreateProduct()
+    {
+        // arrange:
+        var productId = RandomValue.String();
+        var product =  new Product
+        {
+            Id = productId
+        };
+
+        // act:
+        var result = await this.controllerUnderTest.CreateProduct(product);
+
+        // asset:
+        var createdAtRouteResult = result?.Result as CreatedAtRouteResult;
+        createdAtRouteResult.Should().NotBeNull();
+        createdAtRouteResult?.StatusCode.Should().Be(201);
+        createdAtRouteResult?.RouteName.Should().Be("GetProducts");
+        ((Product)createdAtRouteResult.Value).Id.Should().Be(productId);
+
+    }
+
+    [Fact]
+    public async Task ReturnSuccess_From_UpdateProduct()
+    {
+        // arrange:
+        var product = new Product();
+        this.productRepositoryMock.Setup(x => x.UpdateProduct(product)).ReturnsAsync(true);
+
+        // act:
+        var response = await this.controllerUnderTest.UpdateProduct(product);
+
+         // assert:
+        var okResult = response as OkObjectResult;
+        okResult.Should().NotBeNull();
+        okResult?.Value.Should().Be(true);
     }
 
 }
