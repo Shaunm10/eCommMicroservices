@@ -1,5 +1,7 @@
 {
-    "cSpell.words": [
-        "Xunit"
-    ]
+  "cSpell.words": ["Xunit"],
+  "spellright.language": ["en"],
+  "spellright.documentTypes": ["markdown", "latex", "plaintext", "csharp"],
+  "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj",
+  "dotnet-test-explorer.treeMode": "full"
 }
