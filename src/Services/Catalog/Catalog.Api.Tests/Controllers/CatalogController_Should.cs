@@ -137,4 +137,21 @@ public class CatalogController_Should
         okResult?.Value.Should().Be(true);
     }
 
+    [Fact]
+    public async Task ReturnSuccess_From_DeleteProduct()
+    {
+        // arrange:
+        var productId = RandomValue.String();
+        this.productRepositoryMock
+            .Setup(x => x.DeleteProduct(productId))
+            .ReturnsAsync(true);
+
+        // act:
+        var result = await this.controllerUnderTest.DeleteProductById(productId);
+
+         // assert:
+        var okResult = result as OkObjectResult;
+        okResult.Should().NotBeNull();
+        okResult?.Value.Should().Be(true);
+    }
 }
