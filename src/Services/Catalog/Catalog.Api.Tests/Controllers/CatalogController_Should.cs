@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Catalog.Api.Tests.Controllers;
 
-    
+
 public class CatalogController_Should
 {
     private readonly CatalogController controllerUnderTest;
@@ -21,8 +21,8 @@ public class CatalogController_Should
     public CatalogController_Should()
     {
         this.productRepositoryMock = new Mock<IProductRepository>();
-        this.loggerStub =  new Mock<ILogger<CatalogController>>();
-        this.controllerUnderTest = new CatalogController(this.productRepositoryMock.Object, this.loggerStub.Object); 
+        this.loggerStub = new Mock<ILogger<CatalogController>>();
+        this.controllerUnderTest = new CatalogController(this.productRepositoryMock.Object, this.loggerStub.Object);
     }
 
     [Fact]
@@ -38,5 +38,5 @@ public class CatalogController_Should
         //response.Value.Should.Be()
     }
 
-    
+
 }
