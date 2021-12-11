@@ -25,7 +25,7 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "run unit tests",
+      "label": "Unit tests",
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -34,29 +34,6 @@
         "/p:CollectCoverage=true",
         "/p:CoverletOutputFormat=lcov",
         "/p:CoverletOutput=./lcov.info ",
-        // Ask dotnet build to generate full paths for file names.
-        "/property:GenerateFullPaths=true",
-        // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}/src/"
-      },
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "run unit tests watch",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "test",
-        "watch",
-        "eCommMicroservices.sln",
-        "/p:CollectCoverage=true",
         // Ask dotnet build to generate full paths for file names.
         "/property:GenerateFullPaths=true",
         // Do not generate summary otherwise it leads to duplicate errors in Problems panel
