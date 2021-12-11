@@ -76,8 +76,7 @@ public class CatalogController_Should
         // assert:
         var notFoundResult = response?.Result as NotFoundResult;
         notFoundResult.Should().NotBeNull();
-        //this.loggerStub.Verify(x => x.LogError("Product with id: "+productId +", not found."), times: Times.Once);
-        
+        this.loggerStub.VerifyLogging($"Product with id: {productId}, not found.", LogLevel.Error);
     }
 
     [Fact]
@@ -85,7 +84,7 @@ public class CatalogController_Should
     {
         // arrange:
         var category = RandomValue.String();
-        var products =  new List<Product>();
+        List<Product> products = new();
         this.productRepositoryMock
             .Setup(x => x.GetProductsByCategory(category))
             .ReturnsAsync(products);
