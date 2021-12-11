@@ -1,10 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Catalog.Api.Tests
 {
@@ -14,7 +10,9 @@ namespace Catalog.Api.Tests
         {
             times ??= Times.Once();
 
-            Func<object, Type, bool> state = (v, t) => v.ToString().CompareTo(expectedMessage) == 0;
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            Func<object, Type, bool> state = (v, t) => v!.ToString().CompareTo(expectedMessage) == 0;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             logger.Verify(
                 x => x.Log(
@@ -22,7 +20,9 @@ namespace Catalog.Api.Tests
                     It.IsAny<EventId>(),
                     It.Is<It.IsAnyType>((v, t) => state(v, t)),
                     It.IsAny<Exception>(),
+#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
                     It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)), (Times)times);
+#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
 
             return logger;
         }
