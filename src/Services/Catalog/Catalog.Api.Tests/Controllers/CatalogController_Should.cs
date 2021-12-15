@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Catalog.Api.Controllers;
 using Catalog.Api.Entities;
 using Catalog.Api.Repositories;
@@ -8,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using RandomTestValues;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Catalog.Api.Tests.Controllers;
-
 
 public class CatalogController_Should
 {
