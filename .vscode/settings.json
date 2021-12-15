@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["Xunit"],
+  "cSpell.words": ["Serilog", "Xunit"],
   "spellright.language": ["en"],
   "spellright.documentTypes": ["markdown", "latex", "plaintext", "csharp"],
   "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj",
