@@ -1,4 +1,5 @@
 using Catalog.Api.Data;
+using Catalog.Api.Middleware;
 using Catalog.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ builder.Services.AddScoped<ICatalogContext, CatalogContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
+
+app.UseMiddleware<CustomExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
