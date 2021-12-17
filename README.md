@@ -24,7 +24,7 @@ E-commerce Microservices implementation
 ##### Creates a new catalog
 `> db.createCollection('Products')`
 
-##### Inserts Products ito a collection
+##### Inserts Products into a collection
 ```
 > db.Products.insertMany(
     [

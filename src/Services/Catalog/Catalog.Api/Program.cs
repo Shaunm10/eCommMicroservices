@@ -4,9 +4,14 @@ using Catalog.Api.Repositories;
 using Serilog;
 using Serilog.Events;
 
+
+var assemblyName  = typeof(Program).Assembly.GetName().Name;
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .Enrich.FromLogContext()
+    .Enrich.WithMachineName()
+    .Enrich.WithProperty("Assembly",assemblyName)
     .CreateBootstrapLogger();
 
 try
@@ -15,8 +20,7 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog((ctx, lc) => lc
-        .WriteTo.Console()
-        .WriteTo.Seq(string.Empty));
+        .WriteTo.Console());
 
     // Add services to the container.
     builder.Services.AddControllers();
