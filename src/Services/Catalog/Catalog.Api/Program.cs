@@ -4,14 +4,13 @@ using Catalog.Api.Repositories;
 using Serilog;
 using Serilog.Events;
 
-
-var assemblyName  = typeof(Program).Assembly.GetName().Name;
+var assemblyName = typeof(Program).Assembly.GetName().Name;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .Enrich.FromLogContext()
     .Enrich.WithMachineName()
-    .Enrich.WithProperty("Assembly",assemblyName)
+    .Enrich.WithProperty("Assembly", assemblyName)
     .CreateBootstrapLogger();
 
 try
