@@ -47,6 +47,75 @@
         "reveal": "silent"
       },
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Docker Compose Up",
+      "command": "docker-compose",
+
+      "type": "shell",
+      "isBackground": false,
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^(Creating network)$",
+            "endsPattern": "^(Creating|Recreating|Starting) (kafka|service-minio|mqtt) ... (done)$"
+          }
+        }
+      ],
+
+      "presentation": {
+        "focus": true
+      },
+      "args": [
+        "-f",
+        "${workspaceFolder}/src/docker-compose.yml",
+        "-f",
+        "${workspaceFolder}/src/docker-compose.override.yml",
+        "up"
+      ]
+    },
+    {
+      "label": "Docker Compose Down",
+      "command": "docker-compose",
+      "type": "shell",
+      "isBackground": false,
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^(Creating network)$",
+            "endsPattern": "^(Creating|Recreating|Starting) (kafka|service-minio|mqtt) ... (done)$"
+          }
+        }
+      ],
+
+      "presentation": {
+        "focus": true
+      },
+      "args": [
+        "-f",
+        "${workspaceFolder}/src/docker-compose.yml",
+        "-f",
+        "${workspaceFolder}/src/docker-compose.override.yml",
+        "down"
+      ]
     }
   ]
 }
