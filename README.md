@@ -6,6 +6,9 @@ E-commerce Microservices implementation
 ##### Running Mongo Container
 `> docker run -d -p 27017:27017 --name shopping-mongo mongo` 
 
+##### Running Redis Container
+`> docker run -d -p 6379:6379 --name aspnetrun-redis redis` 
+
 ##### Look at the logs for a particular container
 `> docker logs -f shopping-mongo`
 
@@ -40,6 +43,27 @@ E-commerce Microservices implementation
     ]
 )
 ```
+
+## Redis Commands
+
+##### Open a terminal to the running container
+`> docker exec -it aspnetrun-redis /bin/bash`
+
+##### Open the cli
+```
+> cd data
+> redis-cli
+```
+
+##### Set a key's value
+`> set key value`
+`> set name Shaun`
+
+
+##### Get a key's value
+`> get key`
+`> get name`
+
 
 ## .net Core Commands
 
