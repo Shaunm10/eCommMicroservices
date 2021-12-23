@@ -17,13 +17,13 @@ public class BasketRepository : IBasketRepository
 
     public async Task DeleteBasket(string userName)
     {
-        var key = this.GetCacheKey(userName);
+        var key = GetCacheKey(userName);
         await this._redisCache.RemoveAsync(key);
     }
 
     public async Task<ShoppingCart?> GetBasket(string userName)
     {
-        var key = this.GetCacheKey(userName);
+        var key = GetCacheKey(userName);
         var basketJson = await this._redisCache.GetStringAsync(key);
 
         if (string.IsNullOrWhiteSpace(basketJson))
@@ -40,7 +40,7 @@ public class BasketRepository : IBasketRepository
     {
         if (!string.IsNullOrWhiteSpace(basket.UserName))
         {
-            var key = this.GetCacheKey(basket.UserName);
+            var key = GetCacheKey(basket.UserName);
             var cartJson = JsonSerializer.Serialize(basket);
 
             await this._redisCache.SetStringAsync(key, cartJson);
@@ -51,7 +51,7 @@ public class BasketRepository : IBasketRepository
         return null;
     }
 
-    private string GetCacheKey(string userName)
+    private static string GetCacheKey(string userName)
     {
         var key = $"{BasketCachePrefix}.{VersionNumber}.{userName}";
         return key;
