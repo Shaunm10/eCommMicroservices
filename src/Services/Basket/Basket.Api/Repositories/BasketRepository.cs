@@ -8,6 +8,7 @@ public class BasketRepository : IBasketRepository
 {
     private readonly IDistributedCache _redisCache;
     private const string BasketCachePrefix = nameof(BasketRepository);
+    private const string VersionNumber = "1.0.0.0";
 
     public BasketRepository(IDistributedCache distributedCache)
     {
@@ -16,13 +17,13 @@ public class BasketRepository : IBasketRepository
 
     public async Task DeleteBasket(string userName)
     {
-        var key = $"{BasketCachePrefix}.{userName}";
+        var key = this.GetCacheKey(userName);
         await this._redisCache.RemoveAsync(key);
     }
 
     public async Task<ShoppingCart?> GetBasket(string userName)
     {
-        var key = $"{BasketCachePrefix}.{userName}";
+        var key = this.GetCacheKey(userName);
         var basketJson = await this._redisCache.GetStringAsync(key);
 
         if (string.IsNullOrWhiteSpace(basketJson))
@@ -39,7 +40,7 @@ public class BasketRepository : IBasketRepository
     {
         if (!string.IsNullOrWhiteSpace(basket.UserName))
         {
-            var key = $"{BasketCachePrefix}.{basket.UserName}";
+            var key = this.GetCacheKey(basket.UserName);
             var cartJson = JsonSerializer.Serialize(basket);
 
             await this._redisCache.SetStringAsync(key, cartJson);
@@ -48,5 +49,11 @@ public class BasketRepository : IBasketRepository
         }
 
         return null;
+    }
+
+    private string GetCacheKey(string userName)
+    {
+        var key = $"{BasketCachePrefix}.{VersionNumber}.{userName}";
+        return key;
     }
 }
