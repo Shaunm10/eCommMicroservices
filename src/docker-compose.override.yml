@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   mongoclient:
+    container_name: mongoclient 
     image: mongoclient/mongoclient
     ports:
       - '3000:3000'
@@ -22,6 +23,18 @@ services:
     ports:
         - "6379:6379"
 
+  discountdb:
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=fakePassword
+      - POSTGRES_DB=DiscountDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgressql/data/
+    
   portainer:
     container_name: portainer
     restart: always
