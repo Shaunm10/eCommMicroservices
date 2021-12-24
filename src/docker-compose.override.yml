@@ -16,6 +16,12 @@ services:
     depends_on:
       - mongoclient
 
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+        - "6379:6379"
+
   catalog.api:
     container_name: catalog.api
     environment:
@@ -27,3 +33,16 @@ services:
       - '8000:80'
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=basketdb:6379"
+      #- ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "8001:80"
+    depends_on:
+    - basketdb
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
