@@ -74,5 +74,11 @@
       "type": "coreclr",
       "request": "attach"
     }
+  ],
+  "compounds": [
+    {
+      "name": "Launch All Api's",
+      "configurations": ["Launch Catalog.Api", "Launch Basket.Api"]
+    }
   ]
 }
