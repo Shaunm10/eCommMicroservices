@@ -67,6 +67,13 @@ E-commerce Microservices implementation
 
 ## .net Core Commands
 
+#### Create a new WebApi Project (in the current Dir)
+`> dotnet new webapi -n Discount.Api`
+
+#### Add Project to solution (in the Dir of .sln)
+`> dotnet new webapi -n Discount.Api`
+
+
 #### Install a Nuget Package
 `> dotnet add package MongoDB.Driver --version 2.14.1`
 
@@ -90,6 +97,7 @@ E-commerce Microservices implementation
 - [ ] Make mulitple versions for Catlog.Api
 - [ ] Add Unit Test for Basket.Api
 - [ ] Add Jagger distibuted tracing
+- [ ] Add Serilog to all WebApi's
 - [ ] Add Debugging capability to VsCode Docker-compose
 - [ ] User Dapper -> [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
 - [ ] Create Angular Client
