@@ -31,4 +31,12 @@ public class BasketController : ControllerBase
         var newBasket = await this._basketRepository.UpdateBasket(basket);
         return this.Ok(newBasket);
     }
+
+    [HttpDelete]
+    [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> DeleteBasket(string userName)
+    {
+        await this._basketRepository.DeleteBasket(userName);
+        return this.Ok();
+    }
 }

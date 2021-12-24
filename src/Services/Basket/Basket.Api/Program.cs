@@ -1,3 +1,4 @@
+using Basket.Api.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
 });
+
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 // Add services to the container.
 builder.Services.AddControllers();
