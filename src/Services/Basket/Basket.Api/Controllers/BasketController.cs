@@ -26,13 +26,13 @@ public class BasketController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody]ShoppingCart basket)
+    public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
     {
         var newBasket = await this._basketRepository.UpdateBasket(basket);
         return this.Ok(newBasket);
     }
 
-    [HttpDelete]
+    [HttpDelete("{userName}", Name = "DeleteBasket")]
     [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> DeleteBasket(string userName)
     {
