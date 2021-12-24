@@ -75,4 +75,24 @@ E-commerce Microservices implementation
 #### Run the docker compose files
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
+
+|Api|Url|
+|---|---|
+|Catalog.Api|[http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html)|
+|Basket.Api|[http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html)|
+|Portainer|[http://localhost:9000](http://localhost:9000)|
+
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
+
+
+## Side Tasks
+- [ ] Make multiple versions for Basket.Api
+- [ ] Make mulitple versions for Catlog.Api
+- [ ] Add Unit Test for Basket.Api
+- [ ] Add Jagger distibuted tracing
+- [ ] Add Debugging capability to VsCode Docker-compose
+- [ ] User Dapper -> [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
+- [ ] Create Angular Client
+- [ ] Create React Client
+- [ ] Create iOS client
+- [ ] Create Android client
