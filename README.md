@@ -128,9 +128,13 @@ INSERT INTO coupon (productid, description, amount) Values ('602d2149e773f2a3990
 ## Side Tasks
 
 - [ ] Make multiple versions for Basket.Api
-- [ ] Make mulitple versions for Catlog.Api
+- [ ] Make mulitple versions for Catalog.Api
+- [ ] Make mulitple versions for Coupon.Api
+- [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Add Unit Test for Basket.Api
 - [ ] Add Jagger distibuted tracing
+- [ ] Make all configuration strongly typed objects
+- [ ] Add more Rosslyn Code analizers
 - [ ] Add Serilog to all WebApi's
 - [ ] Add Debugging capability to VsCode Docker-compose
 - [ ] User Dapper -> [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
