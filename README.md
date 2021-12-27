@@ -116,10 +116,11 @@ INSERT INTO coupon (productid, description, amount) Values ('602d2149e773f2a3990
 
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
-| Api         | Url                                                                                  |
+| Resource         | Url (In Docker-compose)|
 | ----------- | ------------------------------------------------------------------------------------ |
 | Catalog.Api | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
 | Basket.Api  | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
+| Discount.Api  | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
 | Portainer   | [http://localhost:9000](http://localhost:9000)                                       |
 | PGAdmin4    | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
 
