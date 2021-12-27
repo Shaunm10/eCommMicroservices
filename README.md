@@ -133,6 +133,7 @@ INSERT INTO coupon (productid, description, amount) Values ('602d2149e773f2a3990
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Add Unit Test for Basket.Api
 - [ ] Add Jagger distibuted tracing
+- [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects
 - [ ] Add more Rosslyn Code analizers
 - [ ] Add Serilog to all WebApi's
