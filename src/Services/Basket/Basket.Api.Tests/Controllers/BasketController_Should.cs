@@ -35,7 +35,7 @@ namespace Basket.Api.Tests.Controllers
 
             var shoppingCart = okResult?.Value as ShoppingCart;
             shoppingCart.Should().NotBeNull();
-            
+
             shoppingCart!.UserName.Should().Be(userName);
             shoppingCart.Items.Count.Should().Be(0);
             shoppingCart.TotalPrice.Should().Be(0.0m);
@@ -74,12 +74,12 @@ namespace Basket.Api.Tests.Controllers
         public async Task Return_UpdatedBasket_From_UpdateBasket()
         {
             // arrange:
-            var cart = new ShoppingCart 
+            var cart = new ShoppingCart
             {
                 UserName = RandomValue.String()
             };
 
-            var updatedCart = new ShoppingCart 
+            var updatedCart = new ShoppingCart
             {
                 UserName = RandomValue.String()
             };
@@ -91,7 +91,7 @@ namespace Basket.Api.Tests.Controllers
 
             // assert:
             var okResult = result?.Result as OkObjectResult;
-            okResult.Value.Should().Be(updatedCart);
+            okResult?.Value.Should().Be(updatedCart);
         }
 
         [Fact]

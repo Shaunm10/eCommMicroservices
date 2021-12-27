@@ -2,49 +2,84 @@
 using Discount.Api.Entities.V1;
 using Npgsql;
 
-namespace Discount.Api.Repositories
+namespace Discount.Api.Repositories;
+
+public class DiscountRepository : IDiscountRepository
 {
-    public class DiscountRepository : IDiscountRepository
+    private readonly IConfiguration _configuration;
+    private readonly string connectionString;
+
+    public DiscountRepository(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
-        private readonly string connectionString;
+        this._configuration = configuration;
+        this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+    }
 
-        public DiscountRepository(IConfiguration configuration)
-        {
-            this._configuration = configuration;
-            this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-        }
-
-        public async Task<bool> CreateDiscount(Coupon coupon)
-        {
-            using var connection = new NpgsqlConnection(this.connectionString);
-            var sql = @"INSERT INTO Coupon (ProductId, Description, Amount) 
+    public async Task<bool> CreateDiscount(Coupon coupon)
+    {
+        using var connection = new NpgsqlConnection(this.connectionString);
+        var sql = @"INSERT INTO Coupon (ProductId, Description, Amount)
                         VALUES (@ProductId, @Description, @Amount)";
 
-            var affected = await connection.ExecuteAsync(sql, new { ProductId = coupon.ProductId, Description = coupon.Description });
+        var affectedCount = await connection.ExecuteAsync(
+            sql,
+            new
+            {
+                ProductId = coupon.ProductId,
+                Description = coupon.Description,
+                Amount = coupon.Amount
+            });
 
-            return false;
-        }
+        return affectedCount == 1;
+    }
 
-        public Task<bool> DeleteDiscount(int productId)
-        {
-            throw new NotImplementedException();
-        }
+    public async Task<bool> DeleteDiscount(int productId)
+    {
+        using var connection = new NpgsqlConnection(this.connectionString);
+        var sql = @"DELETE FROM Coupon
+                        WHERE CouponId = @Id";
 
-        public async Task<Coupon?> GetDiscount(int productId)
-        {
-            using var connection = new NpgsqlConnection(this.connectionString);
-            const string sql = "SELECT * FROM Coupon WHERE ProductId =  @ProductId";
+        var affectedCount = await connection.ExecuteAsync(
+            sql,
+            new
+            {
+                Id = productId
+            });
 
-            var coupon = await connection
-                .QueryFirstOrDefaultAsync<Coupon>(sql, new { ProductId = productId });
+        return affectedCount == 1;
+    }
 
-            return coupon;
-        }
+    public async Task<Coupon?> GetDiscount(int productId)
+    {
+        using var connection = new NpgsqlConnection(this.connectionString);
+        const string sql = "SELECT * FROM Coupon WHERE ProductId =  @ProductId";
 
-        public Task<bool> UpdateDiscount(Coupon coupon)
-        {
-            throw new NotImplementedException();
-        }
+        var coupon = await connection
+            .QueryFirstOrDefaultAsync<Coupon>(sql, new { ProductId = productId });
+
+        return coupon;
+    }
+
+    public async Task<bool> UpdateDiscount(Coupon coupon)
+    {
+        using var connection = new NpgsqlConnection(this.connectionString);
+        var sql = @"UPDATE Coupon
+                        SET
+                            ProductId = @ProductId
+                            , Description = @Description
+                            , Amount @Amount
+                        WHERE CouponId = @Id";
+
+        var affectedCount = await connection.ExecuteAsync(
+            sql,
+            new
+            {
+                ProductId = coupon.ProductId,
+                Description = coupon.Description,
+                Amount = coupon.Amount,
+                Id = coupon.Id
+            });
+
+        return affectedCount == 1;
     }
 }
