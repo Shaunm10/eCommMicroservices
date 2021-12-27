@@ -1,6 +1,8 @@
+using Discount.Api.Extensions;
 using Discount.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
@@ -11,6 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.MigrateDatabase<Program>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,10 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

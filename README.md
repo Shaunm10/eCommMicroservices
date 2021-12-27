@@ -107,7 +107,6 @@ CREATE Table Discount(
 ```
 INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a3990b47f5','IPhone Discount',150);
 INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a3990b47f6','Samsung 10 Discount',100);
-
 ```
 
 ## Docker Compose Commands
