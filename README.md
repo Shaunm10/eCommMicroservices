@@ -94,7 +94,7 @@ E-commerce Microservices implementation
 #### Create discounts table
 
 ```
-CREATE Table Coupon(
+CREATE Table Discount(
 	ID SERIAL PRIMARY KEY NOT NULL,
 	ProductID VARCHAR(24) NOT NULL,
 	Description TEXT,
@@ -105,8 +105,8 @@ CREATE Table Coupon(
 #### Insert discounts
 
 ```
-INSERT INTO coupon (productid, description, amount) Values ('602d2149e773f2a3990b47f5','IPhone Discount',150);
-INSERT INTO coupon (productid, description, amount) Values ('602d2149e773f2a3990b47f6','Samsung 10 Discount',100);
+INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a3990b47f5','IPhone Discount',150);
+INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a3990b47f6','Samsung 10 Discount',100);
 
 ```
 

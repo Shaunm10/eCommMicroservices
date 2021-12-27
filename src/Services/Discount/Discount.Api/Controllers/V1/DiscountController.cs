@@ -20,8 +20,8 @@ public class DiscountController : ControllerBase
 
     [HttpGet("[action]/{productId}", Name = "GetDiscount")]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<Coupon>> GetDiscount(string productId)
+    [ProducesResponseType(typeof(Entities.V1.Discount), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<Entities.V1.Discount>> GetDiscount(string productId)
     {
         var discount = await this.discountRepository.GetDiscountAsync(productId);
 
@@ -35,8 +35,8 @@ public class DiscountController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.Created)]
-    public async Task<ActionResult<Coupon>> CreateDiscount([FromBody] Coupon coupon)
+    [ProducesResponseType(typeof(Entities.V1.Discount), (int)HttpStatusCode.Created)]
+    public async Task<ActionResult<Entities.V1.Discount>> CreateDiscount([FromBody] Entities.V1.Discount coupon)
     {
         await this.discountRepository.CreateDiscountAsync(coupon);
         return this.CreatedAtRoute("GetDiscount", new { productId = coupon.ProductId }, coupon);
@@ -44,8 +44,8 @@ public class DiscountController : ControllerBase
 
     [HttpPut]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<Coupon>> UpdateDiscount([FromBody] Coupon coupon)
+    [ProducesResponseType(typeof(Entities.V1.Discount), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<Entities.V1.Discount>> UpdateDiscount([FromBody] Entities.V1.Discount coupon)
     {
         var successful = await this.discountRepository.UpdateDiscountAsync(coupon);
 

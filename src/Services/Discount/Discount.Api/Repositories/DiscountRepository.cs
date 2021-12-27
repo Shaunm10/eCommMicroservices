@@ -15,10 +15,10 @@ public class DiscountRepository : IDiscountRepository
         this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
     }
 
-    public async Task<bool> CreateDiscountAsync(Coupon coupon)
+    public async Task<bool> CreateDiscountAsync(Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
-        var sql = @"INSERT INTO Coupon (ProductId, Description, Amount)
+        var sql = @"INSERT INTO Discount (ProductId, Description, Amount)
                         VALUES (@ProductId, @Description, @Amount)";
 
         var affectedCount = await connection.ExecuteAsync(
@@ -37,7 +37,7 @@ public class DiscountRepository : IDiscountRepository
     public async Task<bool> DeleteDiscountAsync(string productId)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
-        var sql = @"DELETE FROM Coupon WHERE CouponId = @Id";
+        var sql = @"DELETE FROM Discount WHERE CouponId = @Id";
 
         var affectedCount = await connection.ExecuteAsync(
             sql,
@@ -50,21 +50,21 @@ public class DiscountRepository : IDiscountRepository
         return affectedCount != 0;
     }
 
-    public async Task<Coupon?> GetDiscountAsync(string productId)
+    public async Task<Entities.V1.Discount?> GetDiscountAsync(string productId)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
-        const string sql = "SELECT * FROM Coupon WHERE ProductId =  @ProductId";
+        const string sql = "SELECT * FROM Discount WHERE ProductId =  @ProductId";
 
         var coupon = await connection
-            .QueryFirstOrDefaultAsync<Coupon>(sql, new { ProductId = productId });
+            .QueryFirstOrDefaultAsync<Entities.V1.Discount>(sql, new { ProductId = productId });
 
         return coupon;
     }
 
-    public async Task<bool> UpdateDiscountAsync(Coupon coupon)
+    public async Task<bool> UpdateDiscountAsync(Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
-        var sql = @"UPDATE Coupon
+        var sql = @"UPDATE Discount
                         SET
                             ProductId = @ProductId
                             , Description = @Description
