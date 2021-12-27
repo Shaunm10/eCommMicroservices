@@ -35,12 +35,13 @@ namespace Basket.Api.Tests.Controllers
 
             var shoppingCart = okResult?.Value as ShoppingCart;
             shoppingCart.Should().NotBeNull();
-            shoppingCart.UserName.Should().Be(userName);
+            
+            shoppingCart!.UserName.Should().Be(userName);
             shoppingCart.Items.Count.Should().Be(0);
             shoppingCart.TotalPrice.Should().Be(0.0m);
         }
 
-        Fact]
+        [Fact]
         public async Task Return_Existing_Cart_From_GetBasket()
         {
             // arrange;
@@ -64,9 +65,49 @@ namespace Basket.Api.Tests.Controllers
 
             var shoppingCart = okResult?.Value as ShoppingCart;
             shoppingCart.Should().NotBeNull();
-            shoppingCart.UserName.Should().Be(userName);
+            shoppingCart!.UserName.Should().Be(userName);
             shoppingCart.Items.Count.Should().Be(1);
             shoppingCart.Should().Be(cart);
+        }
+
+        [Fact]
+        public async Task Return_UpdatedBasket_From_UpdateBasket()
+        {
+            // arrange:
+            var cart = new ShoppingCart 
+            {
+                UserName = RandomValue.String()
+            };
+
+            var updatedCart = new ShoppingCart 
+            {
+                UserName = RandomValue.String()
+            };
+
+            this.basketRepositoryMock.Setup(x => x.UpdateBasket(cart)).ReturnsAsync(updatedCart);
+
+            // act:
+            var result = await this.controllerUnderTest.UpdateBasket(cart);
+
+            // assert:
+            var okResult = result?.Result as OkObjectResult;
+            okResult.Value.Should().Be(updatedCart);
+        }
+
+        [Fact]
+        public async Task Return_OK_From_DeleteBasket()
+        {
+            // arrange:
+            var userName = RandomValue.String();
+
+            this.basketRepositoryMock.Setup(x => x.DeleteBasket(userName));
+
+            // act:
+            var result = await this.controllerUnderTest.DeleteBasket(userName);
+
+            // assert:
+            result.Should().NotBeNull();
+            this.basketRepositoryMock.Verify(x => x.DeleteBasket(userName), Times.Once());
         }
     }
 }
