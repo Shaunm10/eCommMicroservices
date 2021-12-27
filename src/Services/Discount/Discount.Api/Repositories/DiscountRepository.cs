@@ -15,7 +15,7 @@ public class DiscountRepository : IDiscountRepository
         this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
     }
 
-    public async Task<bool> CreateDiscount(Coupon coupon)
+    public async Task<bool> CreateDiscountAsync(Coupon coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"INSERT INTO Coupon (ProductId, Description, Amount)
@@ -30,14 +30,14 @@ public class DiscountRepository : IDiscountRepository
                 Amount = coupon.Amount
             });
 
-        return affectedCount == 1;
+        // only return false if no rows were effected
+        return affectedCount != 0;
     }
 
-    public async Task<bool> DeleteDiscount(int productId)
+    public async Task<bool> DeleteDiscountAsync(string productId)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
-        var sql = @"DELETE FROM Coupon
-                        WHERE CouponId = @Id";
+        var sql = @"DELETE FROM Coupon WHERE CouponId = @Id";
 
         var affectedCount = await connection.ExecuteAsync(
             sql,
@@ -46,10 +46,11 @@ public class DiscountRepository : IDiscountRepository
                 Id = productId
             });
 
-        return affectedCount == 1;
+        // only return false if no rows were effected
+        return affectedCount != 0;
     }
 
-    public async Task<Coupon?> GetDiscount(int productId)
+    public async Task<Coupon?> GetDiscountAsync(string productId)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         const string sql = "SELECT * FROM Coupon WHERE ProductId =  @ProductId";
@@ -60,7 +61,7 @@ public class DiscountRepository : IDiscountRepository
         return coupon;
     }
 
-    public async Task<bool> UpdateDiscount(Coupon coupon)
+    public async Task<bool> UpdateDiscountAsync(Coupon coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"UPDATE Coupon
@@ -80,6 +81,7 @@ public class DiscountRepository : IDiscountRepository
                 Id = coupon.Id
             });
 
-        return affectedCount == 1;
+        // only return false if no rows were effected
+        return affectedCount != 0;
     }
 }

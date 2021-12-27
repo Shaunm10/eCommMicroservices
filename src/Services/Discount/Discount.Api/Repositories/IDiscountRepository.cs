@@ -4,11 +4,11 @@ namespace Discount.Api.Repositories;
 
 public interface IDiscountRepository
 {
-    Task<Coupon?> GetDiscount(int productId);
+    Task<Coupon?> GetDiscountAsync(string productId);
 
-    Task<bool> CreateDiscount(Coupon coupon);
+    Task<bool> CreateDiscountAsync(Coupon coupon);
 
-    Task<bool> UpdateDiscount(Coupon coupon);
+    Task<bool> UpdateDiscountAsync(Coupon coupon);
 
-    Task<bool> DeleteDiscount(int productId);
+    Task<bool> DeleteDiscountAsync(string productId);
 }
