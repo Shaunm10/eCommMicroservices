@@ -12,9 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.MigrateDatabase<Program>();
-
 var app = builder.Build();
+
+// TODO: add more complete DB Migration process.
+app.Services.MigrateDatabase<Program>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

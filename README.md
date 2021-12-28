@@ -131,6 +131,9 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 - [ ] Make mulitple versions for Catalog.Api
 - [ ] Make mulitple versions for Coupon.Api
 - [ ] Dapper -> StoredProc in Coupon.Api?
+- [ ] Health checks
+- [ ] Document methods and DTO propeties in Web.Api projects
+- [ ] Add a better Postgres DB Migration setup
 - [ ] Add Unit Test for Basket.Api
 - [ ] Add Jagger distibuted tracing
 - [ ] Add GitHub CI
