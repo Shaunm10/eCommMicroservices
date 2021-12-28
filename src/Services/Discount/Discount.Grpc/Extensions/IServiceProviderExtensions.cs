@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 
-namespace Discount.Api.Extensions;
+namespace Discount.Grpc.Extensions;
 
 public static class IServiceProviderExtensions
 {
@@ -12,7 +12,7 @@ public static class IServiceProviderExtensions
 
         try
         {
-            logger!.LogInformation("Attempting to migrating postgres database..."); 
+            logger!.LogInformation("Attempting to migrating postgres database...");
             using var connection = new NpgsqlConnection(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
             connection.Open();
 
@@ -60,5 +60,4 @@ public static class IServiceProviderExtensions
 
         return serviceProvider;
     }
-
 }
