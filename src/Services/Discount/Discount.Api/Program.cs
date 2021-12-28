@@ -3,7 +3,6 @@ using Discount.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
 // Add services to the container.

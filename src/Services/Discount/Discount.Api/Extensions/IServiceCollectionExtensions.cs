@@ -7,19 +7,18 @@ namespace Discount.Api.Extensions
     {
         public static WebApplicationBuilder MigrateDatabase<TContext>(this WebApplicationBuilder builder, int? retry = 0)
         {
-            int retryForAvailabiliyt = retry.Value;
-
+            // int retryForAvailability = retry.Value;
             var services = builder.Build().Services;
             var configuration = services.GetService<IConfiguration>();
             var logger = services.GetService<ILogger<TContext>>();
 
-            try 
+            try
             {
-                logger.LogInformation("Migrating postgres database.");
+                logger!.LogInformation("Migrating postgres database.");
                 using var connection = new NpgsqlConnection(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
                 connection.Open();
 
-                using var command = new NpgsqlCommand 
+                using var command = new NpgsqlCommand
                 {
                     Connection = connection
                 };
@@ -36,20 +35,18 @@ namespace Discount.Api.Extensions
 
                 command.ExecuteNonQuery();
 
-                command.CommandText = "INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a3990b47f5','IPhone Discount',150);";
+                command.CommandText = "INSERT INTO Discount (productId, description, amount) Values ('602d2149e773f2a3990b47f5','IPhone Discount',150);";
                 command.ExecuteNonQuery();
 
-                command.CommandText = "INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a3990b47f6','Samsung 10 Discount',100);";
+                command.CommandText = "INSERT INTO Discount (productId, description, amount) Values ('602d2149e773f2a3990b47f6','Samsung 10 Discount',100);";
                 command.ExecuteNonQuery();
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 throw;
             }
 
             return builder;
         }
-
-        
     }
 }
