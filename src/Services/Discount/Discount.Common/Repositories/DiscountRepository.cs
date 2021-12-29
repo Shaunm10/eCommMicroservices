@@ -1,20 +1,21 @@
 ﻿using Dapper;
 using Npgsql;
 
-namespace Discount.Grpc.Repositories;
+namespace Discount.Common.Repositories;
 
-public class DiscountRepositoryOLD : IDiscountRepositoryOLD
+public class DiscountRepository : IDiscountRepository
 {
-    private readonly IConfiguration _configuration;
+    //private readonly IConfiguration _configuration;
     private readonly string connectionString;
 
-    public DiscountRepositoryOLD(IConfiguration configuration)
+    public DiscountRepository(string connectionString)
     {
-        this._configuration = configuration;
-        this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+       // this._configuration = configuration;
+       // this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+       this.connectionString = connectionString;
     }
 
-    public async Task<bool> CreateDiscountAsync(Discount.Common.Entities.V1.Discount coupon)
+    public async Task<bool> CreateDiscountAsync(Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"INSERT INTO Discount (ProductId, Description, Amount)
@@ -49,7 +50,7 @@ public class DiscountRepositoryOLD : IDiscountRepositoryOLD
         return affectedCount != 0;
     }
 
-    public async Task<Discount.Common.Entities.V1.Discount?> GetDiscountAsync(string productId)
+    public async Task<Entities.V1.Discount?> GetDiscountAsync(string productId)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         const string sql = "SELECT * FROM Discount WHERE ProductId =  @ProductId";
@@ -60,7 +61,7 @@ public class DiscountRepositoryOLD : IDiscountRepositoryOLD
         return coupon;
     }
 
-    public async Task<bool> UpdateDiscountAsync(Discount.Common.Entities.V1.Discount coupon)
+    public async Task<bool> UpdateDiscountAsync(Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"UPDATE Discount

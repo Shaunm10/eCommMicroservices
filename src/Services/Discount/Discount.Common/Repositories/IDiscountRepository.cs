@@ -1,8 +1,6 @@
-﻿using Discount.Common.Entities.V1;
+﻿namespace Discount.Common.Repositories;
 
-namespace Discount.Grpc.Repositories;
-
-public interface IDiscountRepositoryOLD
+public interface IDiscountRepository
 {
     Task<Discount.Common.Entities.V1.Discount?> GetDiscountAsync(string productId);
 
