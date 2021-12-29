@@ -8,11 +8,11 @@ public static class IServiceProviderExtensions
     {
         int retryForAvailability = retry;
         var configuration = serviceProvider.GetService<IConfiguration>();
-        var logger = serviceProvider.GetService<ILogger<TContext>>();
+        var logger = serviceProvider.GetService<ILogger<TContext>>()!;
 
         try
         {
-            logger!.LogInformation("Attempting to migrating postgres database..."); 
+            logger!.LogInformation("Attempting to migrating postgres database...");
             using var connection = new NpgsqlConnection(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
             connection.Open();
 
@@ -42,7 +42,7 @@ public static class IServiceProviderExtensions
         }
         catch (NpgsqlException ex)
         {
-            logger.LogError(ex, "An error occured while migrating the postgresql database");
+            logger.LogError(ex, "An error occurred while migrating the postgresql database");
 
             if (retryForAvailability < 50)
             {

@@ -19,7 +19,7 @@ public class DiscountService : DiscountProtoServiceBase
     public async override Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
     {
         var discount = await this._discountRepository.GetDiscountAsync(request.ProductId);
-        if (discount != null) 
+        if (discount != null)
         {
             return new CouponModel
             {
@@ -33,4 +33,3 @@ public class DiscountService : DiscountProtoServiceBase
         return null;
     }
 }
-

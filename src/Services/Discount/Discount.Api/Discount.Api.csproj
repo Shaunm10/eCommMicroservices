@@ -21,4 +21,8 @@
 	  </PackageReference>
   </ItemGroup>
 	
+  <ItemGroup>
+    <ProjectReference Include="..\Discount.Common\Discount.Common.csproj" />
+  </ItemGroup>
+	
 </Project>

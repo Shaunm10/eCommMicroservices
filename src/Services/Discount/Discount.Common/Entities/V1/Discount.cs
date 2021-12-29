@@ -1,6 +1,6 @@
-﻿namespace Discount.Grpc.Entities.V1
+namespace Discount.Common.Entities.V1
 {
-    public class Discount_old
+    public class Discount
     {
         public int Id { get; set; }
 
