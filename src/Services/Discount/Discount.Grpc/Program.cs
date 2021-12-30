@@ -21,7 +21,6 @@ builder.Services.AddScoped<IDiscountRepository>(x =>
 
 // builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
-
 // Configure the HTTP request pipeline.
 
 app.MapGrpcService<DiscountService>();

@@ -31,8 +31,63 @@ public class DiscountService : DiscountProtoServiceBase
             throw new RpcException(new Status(StatusCode.NotFound, errorMessage));
         }
 
-        return new DiscountModel();
-       // var discountModel = _mapper.Map<CouponModel>(discount);
-        //return discountModel;
+        var discountModel = this._mapper.Map<DiscountModel>(discount);
+        return discountModel;
+    }
+
+    public async override Task<DiscountModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
+    {
+        var discount = this._mapper.Map<Common.Entities.V1.Discount>(request.Discount);
+
+        var isSuccess = await this._discountRepository.CreateDiscountAsync(discount);
+
+        if (isSuccess)
+        {
+            // pull the newly created Discount and return it.
+            var updatedDiscount = await this._discountRepository.GetDiscountAsync(request.Discount.ProductId);
+            return this._mapper.Map<DiscountModel>(updatedDiscount);
+        }
+
+        var errorMessage = $"Unable to create discount for: {request.Discount?.ProductId}";
+        this._logger.LogWarning($"In  {nameof(this.CreateDiscount)} - {errorMessage}");
+        throw new RpcException(new Status(StatusCode.Internal, errorMessage));
+    }
+
+    override public async Task<DiscountModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
+    {
+        var discount = this._mapper.Map<Common.Entities.V1.Discount>(request.Discount);
+
+        var isSuccess = await this._discountRepository.UpdateDiscountAsync(discount);
+
+        if (isSuccess)
+        {
+            // pull the newly created Discount and return it.
+            var updatedDiscount = await this._discountRepository.GetDiscountAsync(request.Discount.ProductId);
+            return this._mapper.Map<DiscountModel>(updatedDiscount);
+        }
+
+        var errorMessage = $"Unable to update discount for ProductId: {request.Discount?.ProductId}";
+        this._logger.LogWarning($"In  {nameof(this.UpdateDiscount)} - {errorMessage}");
+        throw new RpcException(new Status(StatusCode.Unknown, errorMessage));
+    }
+
+    public async override Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request, ServerCallContext context)
+    {
+        var isSuccess = await this._discountRepository.DeleteDiscountAsync(request.ProductId);
+
+        if (isSuccess)
+        {
+            // pull the newly created Discount and return it.
+            var updatedDiscount = await this._discountRepository.GetDiscountAsync(request.ProductId);
+            return new DeleteDiscountResponse
+            {
+                Success = isSuccess
+            };
+        }
+
+        var errorMessage = $"Unable to delete discount for ProductId: {request.ProductId}";
+        this._logger.LogWarning($"In  {nameof(this.DeleteDiscount)} - {errorMessage}");
+        throw new RpcException(new Status(StatusCode.Unknown, errorMessage));
+
     }
 }
