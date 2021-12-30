@@ -43,9 +43,8 @@ public class DiscountService : DiscountProtoServiceBase
 
         if (isSuccess)
         {
-            // pull the newly created Discount and return it.
-            var updatedDiscount = await this._discountRepository.GetDiscountAsync(request.Discount.ProductId);
-            return this._mapper.Map<DiscountModel>(updatedDiscount);
+            this._logger?.LogInformation($"Discount is successfully created for ProductId: {request.Discount.ProductId}");
+            return this._mapper.Map<DiscountModel>(discount);
         }
 
         var errorMessage = $"Unable to create discount for: {request.Discount?.ProductId}";
@@ -61,9 +60,8 @@ public class DiscountService : DiscountProtoServiceBase
 
         if (isSuccess)
         {
-            // pull the newly created Discount and return it.
-            var updatedDiscount = await this._discountRepository.GetDiscountAsync(request.Discount.ProductId);
-            return this._mapper.Map<DiscountModel>(updatedDiscount);
+            this._logger.LogInformation($"Successfully updated discount for productId: {request.Discount.ProductId}");
+            return this._mapper.Map<DiscountModel>(discount);
         }
 
         var errorMessage = $"Unable to update discount for ProductId: {request.Discount?.ProductId}";
