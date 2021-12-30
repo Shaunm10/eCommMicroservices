@@ -1,4 +1,4 @@
-using Basket.Api.Entities;
+using Basket.Api.Entities.V1;
 
 namespace Basket.Api.Repositories;
 

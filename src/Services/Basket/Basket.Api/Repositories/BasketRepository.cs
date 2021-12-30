@@ -1,5 +1,5 @@
 using System.Text.Json;
-using Basket.Api.Entities;
+using Basket.Api.Entities.V1;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace Basket.Api.Repositories;

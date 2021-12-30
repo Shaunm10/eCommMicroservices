@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using Basket.Api.Controllers;
-using Basket.Api.Entities;
+using Basket.Api.Controllers.V1;
+using Basket.Api.Entities.V1;
 using Basket.Api.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;

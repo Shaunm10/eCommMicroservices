@@ -1,9 +1,9 @@
 using System.Net;
-using Basket.Api.Entities;
+using Basket.Api.Entities.V1;
 using Basket.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Basket.Api.Controllers;
+namespace Basket.Api.Controllers.V1;
 
 [ApiController]
 [Route("api/v1/[controller]")]

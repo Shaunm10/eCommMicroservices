@@ -1,4 +1,4 @@
-namespace Basket.Api.Entities;
+namespace Basket.Api.Entities.V1;
 
 public class ShoppingCartItem
 {
