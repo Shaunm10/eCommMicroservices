@@ -3,17 +3,17 @@ using Microsoft.Extensions.Logging;
 
 using Npgsql;
 
-namespace Discount.Common.Extensions
+namespace Discount.Business.Extensions
 {
     public static class IServiceProviderExtensions
     {
         public static IServiceProvider MigrateDatabase<TContext>(this IServiceProvider serviceProvider, string databaseConnectionString, int retry = 0)
         {
             int retryForAvailability = retry;
-           
+
             var logger = serviceProvider.GetService<ILogger<TContext>>();
 
-            if (string.IsNullOrWhiteSpace(databaseConnectionString)) 
+            if (string.IsNullOrWhiteSpace(databaseConnectionString))
             {
                 logger?.LogWarning($"{nameof(databaseConnectionString)} is Null or whitespace.");
             }

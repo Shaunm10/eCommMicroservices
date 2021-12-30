@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Npgsql;
 
-namespace Discount.Common.Repositories;
+namespace Discount.Business.Repositories;
 
 public class DiscountRepository : IDiscountRepository
 {
@@ -10,14 +10,14 @@ public class DiscountRepository : IDiscountRepository
 
     public DiscountRepository(string connectionString)
     {
-       // this._configuration = configuration;
-       // this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-       this.connectionString = connectionString;
+        // this._configuration = configuration;
+        // this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+        this.connectionString = connectionString;
     }
 
     public async Task<bool> CreateDiscountAsync(Entities.V1.Discount coupon)
     {
-        using var connection = new NpgsqlConnection(this.connectionString);
+        using var connection = new NpgsqlConnection(connectionString);
         var sql = @"INSERT INTO Discount (ProductId, Description, Amount)
                         VALUES (@ProductId, @Description, @Amount)";
 
@@ -25,9 +25,9 @@ public class DiscountRepository : IDiscountRepository
             sql,
             new
             {
-                ProductId = coupon.ProductId,
-                Description = coupon.Description,
-                Amount = coupon.Amount
+                coupon.ProductId,
+                coupon.Description,
+                coupon.Amount
             });
 
         // only return false if no rows were effected
@@ -36,7 +36,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<bool> DeleteDiscountAsync(string productId)
     {
-        using var connection = new NpgsqlConnection(this.connectionString);
+        using var connection = new NpgsqlConnection(connectionString);
         var sql = @"DELETE FROM Discount WHERE CouponId = @Id";
 
         var affectedCount = await connection.ExecuteAsync(
@@ -52,18 +52,18 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<Entities.V1.Discount?> GetDiscountAsync(string productId)
     {
-        using var connection = new NpgsqlConnection(this.connectionString);
+        using var connection = new NpgsqlConnection(connectionString);
         const string sql = "SELECT * FROM Discount WHERE ProductId =  @ProductId";
 
         var coupon = await connection
-            .QueryFirstOrDefaultAsync<Discount.Common.Entities.V1.Discount>(sql, new { ProductId = productId });
+            .QueryFirstOrDefaultAsync<Entities.V1.Discount>(sql, new { ProductId = productId });
 
         return coupon;
     }
 
     public async Task<bool> UpdateDiscountAsync(Entities.V1.Discount coupon)
     {
-        using var connection = new NpgsqlConnection(this.connectionString);
+        using var connection = new NpgsqlConnection(connectionString);
         var sql = @"UPDATE Discount
                         SET
                             ProductId = @ProductId
@@ -75,10 +75,10 @@ public class DiscountRepository : IDiscountRepository
             sql,
             new
             {
-                ProductId = coupon.ProductId,
-                Description = coupon.Description,
-                Amount = coupon.Amount,
-                Id = coupon.Id
+                coupon.ProductId,
+                coupon.Description,
+                coupon.Amount,
+                coupon.Id
             });
 
         // only return false if no rows were effected

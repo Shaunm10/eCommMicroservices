@@ -8,7 +8,7 @@ public static class IServiceProviderExtensions
     {
         int retryForAvailability = retry;
         var configuration = serviceProvider.GetService<IConfiguration>();
-        var logger = serviceProvider.GetService<ILogger<TContext>>()!;
+        var logger = serviceProvider.GetService<ILogger<TContext>>() !;
 
         try
         {
@@ -60,5 +60,4 @@ public static class IServiceProviderExtensions
 
         return serviceProvider;
     }
-
 }

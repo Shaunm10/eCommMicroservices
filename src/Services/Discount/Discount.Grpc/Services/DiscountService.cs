@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Discount.Common.Repositories;
+using Discount.Business.Repositories;
 using Discount.Grpc.Protos;
 using Discount.Grpc.Repositories;
 using Grpc.Core;
@@ -37,7 +37,7 @@ public class DiscountService : DiscountProtoServiceBase
 
     public async override Task<DiscountModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
     {
-        var discount = this._mapper.Map<Common.Entities.V1.Discount>(request.Discount);
+        var discount = this._mapper.Map<Business.Entities.V1.Discount>(request.Discount);
 
         var isSuccess = await this._discountRepository.CreateDiscountAsync(discount);
 
@@ -54,7 +54,7 @@ public class DiscountService : DiscountProtoServiceBase
 
     override public async Task<DiscountModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
     {
-        var discount = this._mapper.Map<Common.Entities.V1.Discount>(request.Discount);
+        var discount = this._mapper.Map<Business.Entities.V1.Discount>(request.Discount);
 
         var isSuccess = await this._discountRepository.UpdateDiscountAsync(discount);
 
@@ -86,6 +86,5 @@ public class DiscountService : DiscountProtoServiceBase
         var errorMessage = $"Unable to delete discount for ProductId: {request.ProductId}";
         this._logger.LogWarning($"In  {nameof(this.DeleteDiscount)} - {errorMessage}");
         throw new RpcException(new Status(StatusCode.Unknown, errorMessage));
-
     }
 }

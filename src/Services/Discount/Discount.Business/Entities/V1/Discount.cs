@@ -1,4 +1,4 @@
-namespace Discount.Common.Entities.V1
+namespace Discount.Business.Entities.V1
 {
     public class Discount
     {

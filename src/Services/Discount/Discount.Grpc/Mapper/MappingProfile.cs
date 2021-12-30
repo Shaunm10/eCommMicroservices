@@ -7,7 +7,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        this.CreateMap<Common.Entities.V1.Discount, DiscountModel>()
+        this.CreateMap<Business.Entities.V1.Discount, DiscountModel>()
             .ReverseMap();
     }
 }

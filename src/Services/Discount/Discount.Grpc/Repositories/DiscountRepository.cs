@@ -14,7 +14,7 @@ public class DiscountRepositoryOLD : IDiscountRepositoryOLD
         this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
     }
 
-    public async Task<bool> CreateDiscountAsync(Discount.Common.Entities.V1.Discount coupon)
+    public async Task<bool> CreateDiscountAsync(Business.Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"INSERT INTO Discount (ProductId, Description, Amount)
@@ -49,18 +49,18 @@ public class DiscountRepositoryOLD : IDiscountRepositoryOLD
         return affectedCount != 0;
     }
 
-    public async Task<Discount.Common.Entities.V1.Discount?> GetDiscountAsync(string productId)
+    public async Task<Business.Entities.V1.Discount?> GetDiscountAsync(string productId)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         const string sql = "SELECT * FROM Discount WHERE ProductId =  @ProductId";
 
         var coupon = await connection
-            .QueryFirstOrDefaultAsync<Discount.Common.Entities.V1.Discount>(sql, new { ProductId = productId });
+            .QueryFirstOrDefaultAsync<Business.Entities.V1.Discount>(sql, new { ProductId = productId });
 
         return coupon;
     }
 
-    public async Task<bool> UpdateDiscountAsync(Discount.Common.Entities.V1.Discount coupon)
+    public async Task<bool> UpdateDiscountAsync(Business.Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"UPDATE Discount

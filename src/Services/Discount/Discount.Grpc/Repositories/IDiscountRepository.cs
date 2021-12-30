@@ -1,14 +1,12 @@
-﻿using Discount.Common.Entities.V1;
-
-namespace Discount.Grpc.Repositories;
+﻿namespace Discount.Grpc.Repositories;
 
 public interface IDiscountRepositoryOLD
 {
-    Task<Discount.Common.Entities.V1.Discount?> GetDiscountAsync(string productId);
+    Task<Business.Entities.V1.Discount?> GetDiscountAsync(string productId);
 
-    Task<bool> CreateDiscountAsync(Discount.Common.Entities.V1.Discount coupon);
+    Task<bool> CreateDiscountAsync(Business.Entities.V1.Discount coupon);
 
-    Task<bool> UpdateDiscountAsync(Discount.Common.Entities.V1.Discount coupon);
+    Task<bool> UpdateDiscountAsync(Business.Entities.V1.Discount coupon);
 
     Task<bool> DeleteDiscountAsync(string productId);
 }
