@@ -1,5 +1,5 @@
-using Discount.Api.Extensions;
-using Discount.Api.Repositories;
+using Discount.Business.Extensions;
+using Discount.Business.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +14,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// TODO: add more complete DB Migration process.
-app.Services.MigrateDatabase<Program>();
+var npgConnectionString = app.Services.GetService<IConfiguration>()?.GetValue<string>("DatabaseSettings:ConnectionString");
+
+if (npgConnectionString != null)
+{
+    // TODO: add more complete DB Migration process.
+    app.Services.MigrateDatabase<Program>(npgConnectionString);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

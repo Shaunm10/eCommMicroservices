@@ -5,13 +5,10 @@ namespace Discount.Business.Repositories;
 
 public class DiscountRepository : IDiscountRepository
 {
-    //private readonly IConfiguration _configuration;
     private readonly string connectionString;
 
     public DiscountRepository(string connectionString)
     {
-        // this._configuration = configuration;
-        // this.connectionString = this._configuration.GetValue<string>("DatabaseSettings:ConnectionString");
         this.connectionString = connectionString;
     }
 

@@ -1,7 +1,6 @@
-﻿using Discount.Api.Entities.V1;
-using Discount.Api.Repositories;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Discount.Business.Repositories;
 
 namespace Discount.Api.Controllers.V1;
 
@@ -20,8 +19,8 @@ public class DiscountController : ControllerBase
 
     [HttpGet("[action]/{productId}", Name = "GetDiscount")]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(Entities.V1.Discount), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<Entities.V1.Discount>> GetDiscount(string productId)
+    [ProducesResponseType(typeof(Business.Entities.V1.Discount), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<Business.Entities.V1.Discount>> GetDiscount(string productId)
     {
         var discount = await this.discountRepository.GetDiscountAsync(productId);
 
@@ -35,19 +34,19 @@ public class DiscountController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(Entities.V1.Discount), (int)HttpStatusCode.Created)]
-    public async Task<ActionResult<Entities.V1.Discount>> CreateDiscount([FromBody] Entities.V1.Discount coupon)
+    [ProducesResponseType(typeof(Business.Entities.V1.Discount), (int)HttpStatusCode.Created)]
+    public async Task<ActionResult<Business.Entities.V1.Discount>> CreateDiscount([FromBody] Business.Entities.V1.Discount discount)
     {
-        await this.discountRepository.CreateDiscountAsync(coupon);
-        return this.CreatedAtRoute("GetDiscount", new { productId = coupon.ProductId }, coupon);
+        await this.discountRepository.CreateDiscountAsync(discount);
+        return this.CreatedAtRoute("GetDiscount", new { productId = discount.ProductId }, discount);
     }
 
     [HttpPut]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(Entities.V1.Discount), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<Entities.V1.Discount>> UpdateDiscount([FromBody] Entities.V1.Discount coupon)
+    [ProducesResponseType(typeof(Business.Entities.V1.Discount), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<Business.Entities.V1.Discount>> UpdateDiscount([FromBody] Business.Entities.V1.Discount discount)
     {
-        var successful = await this.discountRepository.UpdateDiscountAsync(coupon);
+        var successful = await this.discountRepository.UpdateDiscountAsync(discount);
 
         if (successful)
         {

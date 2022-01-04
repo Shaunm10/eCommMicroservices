@@ -130,9 +130,10 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 - [ ] Make multiple versions for Basket.Api
 - [ ] Make mulitple versions for Catalog.Api
 - [ ] Make mulitple versions for Coupon.Api
-- [ ] Create a Discount.Business project to hold servies and DTO's
+- [x] Create a Discount.Business project to hold servies and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Health checks
+- [ ] Add Decimal dataType to the Grpc -> [Grpc Decimal](https://itnext.io/net-decimal-datatype-in-grpc-51c2ddb1c153)
 - [ ] Document methods and DTO propeties in Web.Api projects
 - [ ] Add a better Postgres DB Migration setup
 - [ ] Add Unit Test for Basket.Api

@@ -19,10 +19,7 @@ builder.Services.AddScoped<IDiscountRepository>(x =>
     return new DiscountRepository(npgConnectionString!);
 });
 
-// builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
-
 // Configure the HTTP request pipeline.
-
 app.MapGrpcService<DiscountService>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
