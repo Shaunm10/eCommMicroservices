@@ -136,7 +136,16 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 - [ ] Add Decimal dataType to the Grpc -> [Grpc Decimal](https://itnext.io/net-decimal-datatype-in-grpc-51c2ddb1c153)
 - [ ] Document methods and DTO propeties in Web.Api projects
 - [ ] Add a better Postgres DB Migration setup
-- [ ] Add Unit Test for Basket.Api
+- [ ] Add Unit Test
+  - [ ] Catalog.Api
+  - [ ] Discount.Api
+  - [ ] Discount.Grpc
+  - [ ] Basket.Api
+- [ ] Add Integration Test
+  - [ ] Catalog.Api
+  - [ ] Discount.Api
+  - [ ] Discount.Grpc
+  - [ ] Basket.Api
 - [ ] Add Jagger distibuted tracing
 - [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects
