@@ -11,11 +11,11 @@ namespace Basket.Api.Controllers.V1;
 public class BasketController : ControllerBase
 {
     private readonly IBasketRepository _basketRepository;
-    private readonly DiscountGrpcService _discountGrpcService;
+    private readonly IDiscountGrpcService _discountGrpcService;
 
-    public BasketController(IBasketRepository basketRepository, DiscountGrpcService discountGrpcService)
+    public BasketController(IBasketRepository basketRepository, IDiscountGrpcService discountGrpcService)
     {
-        this._discountGrpcService = discountGrpcService;
+        this._discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
         this._basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
     }
 

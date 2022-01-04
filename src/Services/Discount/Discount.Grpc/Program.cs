@@ -28,7 +28,10 @@ app.MapGet("/", () => "Communication with gRPC endpoints must be made through a 
 
 var npgConnectionString = app.Services.GetService<IConfiguration>()?.GetValue<string>("DatabaseSettings:ConnectionString");
 
-// TODO: add more complete DB Migration process.
-app.Services.MigrateDatabase<Program>(npgConnectionString);
+if (npgConnectionString != null)
+{
+    // TODO: add more complete DB Migration process.
+    app.Services.MigrateDatabase<Program>(npgConnectionString);
+}
 
 app.Run();

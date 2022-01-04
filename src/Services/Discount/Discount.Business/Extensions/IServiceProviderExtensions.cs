@@ -50,7 +50,7 @@ namespace Discount.Business.Extensions
             }
             catch (NpgsqlException ex)
             {
-                logger.LogError(ex, "An error occured while migrating the postgresql database");
+                logger?.LogError(ex, "An error occured while migrating the postgresql database");
 
                 if (retryForAvailability < 50)
                 {
@@ -59,7 +59,7 @@ namespace Discount.Business.Extensions
                     // wait for 2 secounds
                     Thread.Sleep(2000);
 
-                    logger.LogWarning($"Retrying Migration on attempt number {retryForAvailability}");
+                    logger?.LogWarning($"Retrying Migration on attempt number {retryForAvailability}");
 
                     // call the method again.
                     MigrateDatabase<TContext>(serviceProvider, databaseConnectionString, retryForAvailability);

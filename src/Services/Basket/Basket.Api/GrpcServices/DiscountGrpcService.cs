@@ -2,7 +2,7 @@
 
 namespace Basket.Api.GrpcServices;
 
-public class DiscountGrpcService
+public class DiscountGrpcService : IDiscountGrpcService
 {
     private readonly DiscountProtoService.DiscountProtoServiceClient discountProtoService;
 
@@ -21,4 +21,3 @@ public class DiscountGrpcService
         return discount;
     }
 }
-

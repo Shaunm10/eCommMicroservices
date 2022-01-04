@@ -1,3 +1,4 @@
+using Basket.Api.GrpcServices;
 using Basket.Api.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IDiscountGrpcService, DiscountGrpcService>();
 
 // Add services to the container.
 builder.Services.AddControllers();

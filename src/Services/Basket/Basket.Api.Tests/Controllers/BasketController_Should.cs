@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Basket.Api.Controllers.V1;
 using Basket.Api.Entities.V1;
+using Basket.Api.GrpcServices;
 using Basket.Api.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace Basket.Api.Tests.Controllers
     {
         private readonly BasketController controllerUnderTest;
         private readonly Mock<IBasketRepository> basketRepositoryMock;
+        private readonly Mock<IDiscountGrpcService> discountGrpcMock;
         public BasketController_Should()
         {
             this.basketRepositoryMock = new Mock<IBasketRepository>();
-            this.controllerUnderTest = new BasketController(this.basketRepositoryMock.Object);
+            this.discountGrpcMock = new Mock<IDiscountGrpcService>();
+            this.controllerUnderTest = new BasketController(this.basketRepositoryMock.Object, this.discountGrpcMock.Object);
         }
 
         [Fact]
