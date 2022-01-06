@@ -127,14 +127,21 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 
 ## Side Tasks
 
-- [ ] Make multiple versions for Basket.Api
-- [ ] Make mulitple versions for Catalog.Api
-- [ ] Make mulitple versions for Coupon.Api
+Different enhancements to add.
+
+- [ ] Version the Api for External consumers
+  - [ ] Basket.Api
+  - [ ] Catalog.Api
+  - [ ] Coupon.Api
+  - [ ] Coupon.Grpc
 - [x] Create a Discount.Business project to hold servies and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Health checks
+  - [ ] Alive
+  - [ ] Dependencies
 - [ ] Add Decimal dataType to the Grpc -> [Grpc Decimal](https://itnext.io/net-decimal-datatype-in-grpc-51c2ddb1c153)
 - [ ] Document methods and DTO propeties in Web.Api projects
+- [ ] Add better Support for Visual Studio 2022 for Mac (`<LangVersion>10</LangVersion>`)
 - [ ] Add a better Postgres DB Migration setup
 - [ ] Add Unit Test
   - [ ] Catalog.Api
@@ -147,13 +154,15 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
   - [ ] Discount.Grpc
   - [ ] Basket.Api
 - [ ] Add Jagger distibuted tracing
+- [ ] Add Auto registration of DI services -> [NetCore.AutoRegisterDi](https://www.thereformedprogrammer.net/asp-net-core-fast-and-automatic-dependency-injection-setup/)
 - [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects
 - [ ] Add more Rosslyn Code analizers
 - [ ] Add Serilog to all WebApi's
 - [ ] Add Debugging capability to VsCode Docker-compose
 - [ ] User Dapper -> [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
-- [ ] Create Angular Client
-- [ ] Create React Client
-- [ ] Create iOS client
-- [ ] Create Android client
+- [ ] Create Client Apps:
+  - [ ] Angular + .net
+  - [ ] React + Node Client
+  - [ ] iOS App
+  - [ ] Create Android App

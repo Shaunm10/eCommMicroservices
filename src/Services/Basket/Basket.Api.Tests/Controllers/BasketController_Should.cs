@@ -16,11 +16,11 @@ namespace Basket.Api.Tests.Controllers
     {
         private readonly BasketController controllerUnderTest;
         private readonly Mock<IBasketRepository> basketRepositoryMock;
-        private readonly Mock<IDiscountGrpcService> discountGrpcMock;
+        private readonly Mock<IDiscountService> discountGrpcMock;
         public BasketController_Should()
         {
             this.basketRepositoryMock = new Mock<IBasketRepository>();
-            this.discountGrpcMock = new Mock<IDiscountGrpcService>();
+            this.discountGrpcMock = new Mock<IDiscountService>();
             this.controllerUnderTest = new BasketController(this.basketRepositoryMock.Object, this.discountGrpcMock.Object);
         }
 

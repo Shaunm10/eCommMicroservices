@@ -11,9 +11,9 @@ namespace Basket.Api.Controllers.V1;
 public class BasketController : ControllerBase
 {
     private readonly IBasketRepository _basketRepository;
-    private readonly IDiscountGrpcService _discountGrpcService;
+    private readonly IDiscountService _discountGrpcService;
 
-    public BasketController(IBasketRepository basketRepository, IDiscountGrpcService discountGrpcService)
+    public BasketController(IBasketRepository basketRepository, IDiscountService discountGrpcService)
     {
         this._discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
         this._basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
@@ -31,7 +31,20 @@ public class BasketController : ControllerBase
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
     {
-        // TODO: Communicate with Grpc Service and calculate price
+        var productIds = basket.Items.Select(x => x.ProductId).Distinct();
+
+        var discounts = await this._discountGrpcService.GetDiscountsAsync(productIds);
+
+        basket.Items.ForEach(item =>
+        {
+            var discountForItem = discounts.FirstOrDefault(x => x.ProductId == item.ProductId);
+            if (discountForItem != null)
+            {
+                // adjust the price with the discount
+                item.Price -= (decimal)discountForItem.Amount;
+            }
+        });
+
         var newBasket = await this._basketRepository.UpdateBasket(basket);
         return this.Ok(newBasket);
     }

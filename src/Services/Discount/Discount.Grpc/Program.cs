@@ -10,14 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddGrpc();
 builder.Services.AddAutoMapper(typeof(Program));
-var app = builder.Build();
 
 builder.Services.AddScoped<IDiscountRepository>(x =>
 {
-    var npgConnectionString = app.Services.GetService<IConfiguration>()?.GetValue<string>("DatabaseSettings:ConnectionString");
-
+    //var npgConnectionString = builder.Services.GetService<IConfiguration>()?.GetValue<string>("DatabaseSettings:ConnectionString");
+    var npgConnectionString = builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString");
     return new DiscountRepository(npgConnectionString!);
 });
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<DiscountService>();
