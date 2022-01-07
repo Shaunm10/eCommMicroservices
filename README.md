@@ -115,13 +115,13 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
-| Resource         | Url (In Docker-compose)|
-| ----------- | ------------------------------------------------------------------------------------ |
-| Catalog.Api | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
-| Basket.Api  | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
-| Discount.Api  | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
-| Portainer   | [http://localhost:9000](http://localhost:9000)                                       |
-| PGAdmin4    | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
+| Resource     | Url (In Docker-compose)                                                              |
+| ------------ | ------------------------------------------------------------------------------------ |
+| Catalog.Api  | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
+| Basket.Api   | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
+| Discount.Api | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
+| Portainer    | [http://localhost:9000](http://localhost:9000)                                       |
+| PGAdmin4     | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
 
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
 
@@ -153,12 +153,12 @@ Different enhancements to add.
   - [ ] Discount.Api
   - [ ] Discount.Grpc
   - [ ] Basket.Api
-- [ ] Add Jagger distibuted tracing
+- [ ] Add Jagger distributed tracing
 - [ ] Add Global Exception Handler/logger for all Api's
 - [ ] Add Auto registration of DI services -> [NetCore.AutoRegisterDi](https://www.thereformedprogrammer.net/asp-net-core-fast-and-automatic-dependency-injection-setup/)
 - [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects
-- [ ] Add more Rosslyn Code analizers
+- [ ] Add more Rosslyn Code analyzers
 - [ ] Add Serilog to all WebApi's
 - [ ] Add Debugging capability to VsCode Docker-compose
 - [ ] User Dapper -> [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)

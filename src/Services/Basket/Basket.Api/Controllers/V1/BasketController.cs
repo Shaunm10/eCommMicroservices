@@ -31,9 +31,12 @@ public class BasketController : ControllerBase
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
     {
-        var productIds = basket.Items.Select(x => x.ProductId).Distinct();
+        var productIds = basket.Items
+                .Select(x => x.ProductId)
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .Distinct();
 
-        var discounts = await this._discountGrpcService.GetDiscountsAsync(productIds);
+        var discounts = await this._discountGrpcService.GetDiscountsAsync(productIds!);
 
         basket.Items.ForEach(item =>
         {
