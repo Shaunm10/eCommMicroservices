@@ -22,19 +22,24 @@ public class DiscountService : IDiscountService
         return discount;
     }
 
-    public async Task<IEnumerable<DiscountModel>> GetDiscountsAsync(IEnumerable<string> productIds)
+    public async Task<DiscountList> GetDiscountsAsync(IEnumerable<string> productIds)
     {
-        var discountTasks = new List<Task<DiscountModel>>();
+        //var discountTasks = new List<Task<DiscountModel>>();
 
-        productIds.ToList().ForEach(x =>
-        {
-            var productDiscount = this.discountProtoService.GetDiscountAsync(new GetDiscountRequest { ProductId = x });
-            discountTasks.Add(productDiscount.ResponseAsync);
-        });
+        var request = new GetDiscountsRequest();
+        request.ProductIds.AddRange(productIds);
 
-        await Task.WhenAll(discountTasks);
-        var discounts = discountTasks.Select(x => x.Result);
+        var discountsResponse = await this.discountProtoService.GetDiscountsAsync(request);
+        //productIds.ToList().ForEach(x =>
+        //{
+        //    var productDiscount = this.discountProtoService.GetDiscountAsync(new GetDiscountRequest { ProductId = x });
+        //    discountTasks.Add(productDiscount.ResponseAsync);
+        //});
 
-        return discounts;
+        //await Task.WhenAll(discountTasks);
+        //var discounts = discountTasks.Select(x => x.Result);
+        
+
+        return discountsResponse;
     }
 }

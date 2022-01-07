@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Discount.Business.Repositories;
 using Discount.Grpc.Protos;
-using Discount.Grpc.Repositories;
 using Grpc.Core;
 using static Discount.Grpc.Protos.DiscountProtoService;
 
@@ -33,6 +32,20 @@ public class DiscountService : DiscountProtoServiceBase
 
         var discountModel = this._mapper.Map<DiscountModel>(discount);
         return discountModel;
+    }
+
+    public override async Task<DiscountList> GetDiscounts(GetDiscountsRequest request, ServerCallContext context)
+    {
+        var discounts = await this._discountRepository.GetDiscountsAsync(request.ProductIds);
+
+        var discountList = new DiscountList();
+        foreach (var discount in discounts) 
+        {
+            discountList.Discounts.Add(this._mapper.Map<DiscountModel>(discount));
+        }
+
+        //var discountModel = this._mapper.Map<DiscountList>(discounts);
+        return discountList;
     }
 
     public async override Task<DiscountModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)

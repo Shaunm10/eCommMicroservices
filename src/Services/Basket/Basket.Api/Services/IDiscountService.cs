@@ -6,6 +6,6 @@ namespace Basket.Api.GrpcServices
     {
         public Task<DiscountModel> GetDiscountAsync(string productId);
 
-        public Task<IEnumerable<DiscountModel>> GetDiscountsAsync(IEnumerable<string> productIds);
+        public Task<DiscountList> GetDiscountsAsync(IEnumerable<string> productIds);
     }
 }

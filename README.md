@@ -154,6 +154,7 @@ Different enhancements to add.
   - [ ] Discount.Grpc
   - [ ] Basket.Api
 - [ ] Add Jagger distibuted tracing
+- [ ] Add Global Exception Handler/logger for all Api's
 - [ ] Add Auto registration of DI services -> [NetCore.AutoRegisterDi](https://www.thereformedprogrammer.net/asp-net-core-fast-and-automatic-dependency-injection-setup/)
 - [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects

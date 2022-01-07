@@ -9,5 +9,8 @@ public class MappingProfile : Profile
     {
         this.CreateMap<Business.Entities.V1.Discount, DiscountModel>()
             .ReverseMap();
+
+        //this.CreateMap<IEnumerable<Business.Entities.V1.Discount>, DiscountList>()
+        //   .ReverseMap().ForMember();
     }
 }

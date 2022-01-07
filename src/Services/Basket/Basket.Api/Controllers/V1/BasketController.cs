@@ -37,7 +37,7 @@ public class BasketController : ControllerBase
 
         basket.Items.ForEach(item =>
         {
-            var discountForItem = discounts.FirstOrDefault(x => x.ProductId == item.ProductId);
+            var discountForItem = discounts.Discounts.FirstOrDefault(x => x.ProductId == item.ProductId);
             if (discountForItem != null)
             {
                 // adjust the price with the discount

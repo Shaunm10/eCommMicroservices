@@ -1,5 +1,6 @@
 using Discount.Business.Extensions;
 using Discount.Business.Repositories;
+using Discount.Grpc.Middleware;
 using Discount.Grpc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,12 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
 
 // Add services to the container.
-builder.Services.AddGrpc();
+builder.Services.AddGrpc(options => 
+{
+    options.Interceptors.Add<LoggerInterceptor>();
+});
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<IDiscountRepository>(x =>
 {
-    //var npgConnectionString = builder.Services.GetService<IConfiguration>()?.GetValue<string>("DatabaseSettings:ConnectionString");
     var npgConnectionString = builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString");
     return new DiscountRepository(npgConnectionString!);
 });

@@ -58,6 +58,17 @@ public class DiscountRepository : IDiscountRepository
         return coupon;
     }
 
+    public async Task<IEnumerable<Entities.V1.Discount>> GetDiscountsAsync(IEnumerable<string> productIds)
+    {
+        using var connection = new NpgsqlConnection(connectionString);
+        const string sql = "SELECT * FROM Discount WHERE ProductId IN (@ProductIds)";
+
+        var discounts = await connection
+            .QueryAsync<Entities.V1.Discount>(sql, new { ProductIds = string.Join(',', productIds) });
+
+        return discounts;
+    }
+
     public async Task<bool> UpdateDiscountAsync(Entities.V1.Discount coupon)
     {
         using var connection = new NpgsqlConnection(connectionString);
