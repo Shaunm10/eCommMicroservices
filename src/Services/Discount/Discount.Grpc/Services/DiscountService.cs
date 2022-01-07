@@ -44,7 +44,6 @@ public class DiscountService : DiscountProtoServiceBase
             discountList.Discounts.Add(this._mapper.Map<DiscountModel>(discount));
         }
 
-        //var discountModel = this._mapper.Map<DiscountList>(discounts);
         return discountList;
     }
 
