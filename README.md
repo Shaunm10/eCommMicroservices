@@ -1,6 +1,6 @@
 # eCommMicroservices
 
-E-commerce Microservices implementation
+E-commerce Micro services implementation
 
 ## Docker Commands
 
@@ -115,11 +115,16 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
+ to force the images to be rebuilt:
+`> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d --build`
+
+
 | Resource     | Url (In Docker-compose)                                                              |
 | ------------ | ------------------------------------------------------------------------------------ |
 | Catalog.Api  | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
 | Basket.Api   | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
 | Discount.Api | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
+| Discount.Grpc | [http://localhost:8003](http://localhost:8003) |
 | Portainer    | [http://localhost:9000](http://localhost:9000)                                       |
 | PGAdmin4     | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
 
@@ -134,13 +139,13 @@ Different enhancements to add.
   - [ ] Catalog.Api
   - [ ] Coupon.Api
   - [ ] Coupon.Grpc
-- [x] Create a Discount.Business project to hold servies and DTO's
+- [x] Create a Discount.Business project to hold services and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Health checks
   - [ ] Alive
   - [ ] Dependencies
 - [ ] Add Decimal dataType to the Grpc -> [Grpc Decimal](https://itnext.io/net-decimal-datatype-in-grpc-51c2ddb1c153)
-- [ ] Document methods and DTO propeties in Web.Api projects
+- [ ] Document methods and DTO properties in Web.Api projects
 - [ ] Add better Support for Visual Studio 2022 for Mac (`<LangVersion>10</LangVersion>`)
 - [ ] Add a better Postgres DB Migration setup
 - [ ] Add Unit Test

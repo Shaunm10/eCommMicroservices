@@ -3,7 +3,11 @@ using Discount.Business.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+builder.Services.AddScoped<IDiscountRepository>(x =>
+{
+    var npgConnectionString = builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+    return new DiscountRepository(npgConnectionString!);
+});
 
 // Add services to the container.
 builder.Services.AddControllers();

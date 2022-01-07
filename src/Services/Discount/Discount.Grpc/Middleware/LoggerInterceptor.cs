@@ -21,16 +21,17 @@ namespace Discount.Grpc.Middleware
             this.LogCall(context);
             try
             {
+                this._logger.LogInformation($"incoming call to: {context.Method}");
                 return await base.UnaryServerHandler(request, context, continuation);
             }
             catch (NpgsqlException sqlEx)
             {
-                this._logger.LogError(sqlEx, $"An Postgres error occured when calling {context.Method}");
+                this._logger.LogError(sqlEx, $"An Postgres error occurred when calling {context.Method}");
                 throw new RpcException(new Status(StatusCode.Internal, "Sql Error"));
             }
             catch (Exception ex)
             {
-                this._logger.LogError(ex, $"A error occured when calling {context.Method}");
+                this._logger.LogError(ex, $"A error occurred when calling {context.Method}");
                 throw new RpcException(new Status(StatusCode.Internal, "Exception"));
             }
         }
@@ -38,7 +39,7 @@ namespace Discount.Grpc.Middleware
         private void LogCall(ServerCallContext context)
         {
             var httpContext = context.GetHttpContext();
-            this._logger.LogDebug($"Sarting call. Request: {httpContext.Request.Path}");
+            this._logger.LogDebug($"Starting call. Request: {httpContext.Request.Path}");
         }
     }
 }
