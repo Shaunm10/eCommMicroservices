@@ -13,8 +13,8 @@ public class DiscountController : ControllerBase
 
     public DiscountController(IDiscountRepository discountRepository, ILogger<DiscountController> logger)
     {
-        this.discountRepository = discountRepository ?? throw new ArgumentException(nameof(discountRepository));
-        this.logger = logger ?? throw new ArgumentException(nameof(logger));
+        this.discountRepository = discountRepository ?? throw new ArgumentException(null, nameof(discountRepository));
+        this.logger = logger ?? throw new ArgumentException(null, nameof(logger));
     }
 
     [HttpGet("[action]/{productId}", Name = "GetDiscount")]

@@ -39,7 +39,7 @@ public class DiscountService : DiscountProtoServiceBase
         var discounts = await this._discountRepository.GetDiscountsAsync(request.ProductIds);
 
         var discountList = new DiscountList();
-        foreach (var discount in discounts) 
+        foreach (var discount in discounts)
         {
             discountList.Discounts.Add(this._mapper.Map<DiscountModel>(discount));
         }
