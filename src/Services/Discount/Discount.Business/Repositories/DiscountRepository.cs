@@ -14,7 +14,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<bool> CreateDiscountAsync(Entities.V1.Discount coupon)
     {
-        using var connection = new NpgsqlConnection(connectionString);
+        using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"INSERT INTO Discount (ProductId, Description, Amount)
                         VALUES (@ProductId, @Description, @Amount)";
 
@@ -33,7 +33,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<bool> DeleteDiscountAsync(string productId)
     {
-        using var connection = new NpgsqlConnection(connectionString);
+        using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"DELETE FROM Discount WHERE CouponId = @Id";
 
         var affectedCount = await connection.ExecuteAsync(
@@ -49,7 +49,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<Entities.V1.Discount?> GetDiscountAsync(string productId)
     {
-        using var connection = new NpgsqlConnection(connectionString);
+        using var connection = new NpgsqlConnection(this.connectionString);
         const string sql = "SELECT * FROM Discount WHERE ProductId =  @ProductId";
 
         var coupon = await connection
@@ -60,7 +60,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<IEnumerable<Entities.V1.Discount>> GetDiscountsAsync(IEnumerable<string> productIds)
     {
-        using var connection = new NpgsqlConnection(connectionString);
+        using var connection = new NpgsqlConnection(this.connectionString);
         const string sql = "SELECT * FROM Discount WHERE ProductId IN (@ProductIds)";
 
         var discounts = await connection
@@ -71,7 +71,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<bool> UpdateDiscountAsync(Entities.V1.Discount coupon)
     {
-        using var connection = new NpgsqlConnection(connectionString);
+        using var connection = new NpgsqlConnection(this.connectionString);
         var sql = @"UPDATE Discount
                         SET
                             ProductId = @ProductId

@@ -155,6 +155,7 @@ Different enhancements to add.
 - [ ] Document methods and DTO properties in Web.Api projects
 - [ ] Add better Support for Visual Studio 2022 for Mac (`<LangVersion>10</LangVersion>`)
 - [ ] Add a better Postgres DB Migration setup
+- [ ] Make the EntityBase use Id's instead of Strings
 - [ ] Add Unit Test
   - [ ] Catalog.Api
   - [ ] Discount.Api
