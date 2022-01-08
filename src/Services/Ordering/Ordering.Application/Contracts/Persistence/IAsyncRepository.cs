@@ -49,13 +49,23 @@ public interface IAsyncRepository<T>
     Task<T> GetByIdAsync(int id);
 
     /// <summary>
-    /// Add
+    /// Add an Entity
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
     Task<T> AddAsync(T entity);
 
+    /// <summary>
+    /// Updates an Entities properties based on it's Id
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
     Task UpdateAsync(T entity);
 
+    /// <summary>
+    /// Deletes an Entity
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
     Task DeleteAsync(T entity);
 }
