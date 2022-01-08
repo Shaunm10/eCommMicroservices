@@ -75,7 +75,7 @@ E-commerce Micro services implementation
 `> get key`
 `> get name`
 
-## .net Core Commands
+## DotNet Core Commands
 
 #### Create a new WebApi Project (in the current Dir)
 
@@ -88,6 +88,14 @@ E-commerce Micro services implementation
 #### Install a Nuget Package
 
 `> dotnet add package MongoDB.Driver --version 2.14.1`
+
+#### Add project to solution
+
+`> dotnet sln add Services/Ordering/Ordering.Api/Ordering.Api.csproj`
+
+#### Add project reference to current project
+
+`> dotnet add reference ../Ordering.Domain/`
 
 ## PG Sql
 
@@ -115,18 +123,17 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
- to force the images to be rebuilt:
+to force the images to be rebuilt:
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d --build`
 
-
-| Resource     | Url (In Docker-compose)                                                              |
-| ------------ | ------------------------------------------------------------------------------------ |
-| Catalog.Api  | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
-| Basket.Api   | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
-| Discount.Api | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
-| Discount.Grpc | [http://localhost:8003](http://localhost:8003) |
-| Portainer    | [http://localhost:9000](http://localhost:9000)                                       |
-| PGAdmin4     | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
+| Resource      | Url (In Docker-compose)                                                              |
+| ------------- | ------------------------------------------------------------------------------------ |
+| Catalog.Api   | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
+| Basket.Api    | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
+| Discount.Api  | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
+| Discount.Grpc | [http://localhost:8003](http://localhost:8003)                                       |
+| Portainer     | [http://localhost:9000](http://localhost:9000)                                       |
+| PGAdmin4      | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
 
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
 
