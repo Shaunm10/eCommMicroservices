@@ -10,5 +10,4 @@ public class GetOrdersListQueries : IRequest
     {
         this.UserName = userName ?? throw new ArgumentNullException(nameof(userName));
     }
-
 }
