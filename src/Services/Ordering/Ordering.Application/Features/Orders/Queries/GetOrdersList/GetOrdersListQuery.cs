@@ -1,4 +1,5 @@
 using MediatR;
+using Ordering.Application.Models;
 
 namespace Ordering.Application.Features.Orders.Queries.GetOrdersList;
 
