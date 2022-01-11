@@ -1,23 +1,25 @@
 using AutoMapper;
 using MediatR;
 using Ordering.Application.Contracts.Persistence;
-using Ordering.Application.Models;
 
 namespace Ordering.Application.Features.Orders.Queries.GetOrdersList;
 
-public class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, List<OrdersVM>>
+public class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, List<OrderVM>>
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IMapper _mapper;
 
     public GetOrdersListQueryHandler(IOrderRepository orderRepository, IMapper mapper)
     {
-        this._mapper = mapper;
-        this._orderRepository = orderRepository;
-
+        this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        this._orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
     }
-    public Task<List<OrdersVM>> Handle(GetOrdersListQuery request, CancellationToken cancellationToken)
+
+    public async Task<List<OrderVM>> Handle(GetOrdersListQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var orders = await this._orderRepository.GetOrdersByUserName(request.UserName);
+        var ordersVM = this._mapper.Map<List<OrderVM>>(orders);
+
+        return ordersVM;
     }
 }

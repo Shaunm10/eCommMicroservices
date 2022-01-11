@@ -3,7 +3,7 @@ using Ordering.Application.Models;
 
 namespace Ordering.Application.Features.Orders.Queries.GetOrdersList;
 
-public class GetOrdersListQuery : IRequest<List<OrdersVM>>
+public class GetOrdersListQuery : IRequest<List<OrderVM>>
 {
     public string UserName { get; set; }
 

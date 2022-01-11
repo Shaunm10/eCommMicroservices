@@ -1,6 +1,6 @@
 namespace Ordering.Application.Features.Orders.Queries.GetOrdersList;
 
-public class OrdersVM
+public class OrderVM
 {
     public string? UserName { get; set; }
 
@@ -29,6 +29,4 @@ public class OrdersVM
     public string? Expiration { get; set; }
 
     public string? CVV { get; set; }
-
-
 }
