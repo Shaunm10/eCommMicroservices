@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Ordering.Application.Contracts.Infrastructure;
 using Ordering.Application.Contracts.Persistence;
+using Ordering.Application.Models;
+using Ordering.Domain.Entities;
 
 namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder;
 
@@ -20,8 +22,33 @@ public class CheckoutOrderCommandHandler : IRequestHandler<CheckoutOrderCommand,
         this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         this.mailService = mailService ?? throw new ArgumentNullException(nameof(mailService));
     }
-    public Task<int> Handle(CheckoutOrderCommand request, CancellationToken cancellationToken)
+
+    public async Task<int> Handle(CheckoutOrderCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var order = this.mapper.Map<Order>(request);
+        var newOrder = await this.orderRepository.AddAsync(order);
+
+        await this.SendEmail(newOrder);
+
+        return newOrder.Id;
+    }
+
+    private async Task SendEmail(Order newOrder)
+    {
+        var email = new Email
+        {
+            To = "me@example.com",
+            Body = $"Order Id {newOrder.Id} was created.",
+            Subject = $"Order Id: {newOrder.Id} was created for {newOrder.UserName}"
+        };
+
+        try
+        {
+            await this.mailService.SendEmailAsync(email);
+        }
+        catch (Exception ex)
+        {
+            this.logger.LogError(ex, $"OrderId: {newOrder.Id} failed to send email with email service.");
+        }
     }
 }
