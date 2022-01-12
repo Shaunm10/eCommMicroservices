@@ -33,6 +33,5 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
         public string? CVV { get; set; }
 
         public int PaymentMethodId { get; set; }
-
     }
 }
