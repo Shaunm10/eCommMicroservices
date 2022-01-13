@@ -2,6 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Ordering.Application.Contracts.Persistence;
+using Ordering.Domain.Entities;
 
 namespace Ordering.Application.Features.Orders.Commands.UpdateOrder;
 
@@ -16,20 +17,24 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
         this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
         this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         this._orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
-
     }
 
     public async Task<Unit> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
         var existingOrder = await this._orderRepository.GetByIdAsync(request.Id);
 
-        if (existingOrder == null) 
+        if (existingOrder == null)
         {
             this._logger.LogError($"Order not found in database with OrderId:{request.Id}");
-            //throw new DirectoryNotFoundException();
+        }
+        else
+        {
+            // this is acting like a JavaScript spread operation
+            this._mapper.Map(request, existingOrder, typeof(UpdateOrderCommand), typeof(Order));
+
+            await this._orderRepository.UpdateAsync(existingOrder);
         }
 
-
-        return new Unit();
+        return Unit.Value;
     }
 }
