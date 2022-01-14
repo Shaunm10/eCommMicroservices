@@ -11,7 +11,7 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
     private readonly IMapper _mapper;
     private readonly ILogger<DeleteOrderCommandHandler> _logger;
 
-    public DeleteOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, ILogger<DeleteOrderCommandHandler> logger )
+    public DeleteOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, ILogger<DeleteOrderCommandHandler> logger)
     {
         this._orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
         this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -25,9 +25,10 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
         {
             this._logger.LogWarning("Unable to delete order with orderId {Id} because it's not found.", request.Id);
         }
-        else 
+        else
         {
             await this._orderRepository.DeleteAsync(existingOrder);
+            this._logger.LogInformation("Order {Id} is successfully deleted", request.Id);
         }
 
         return Unit.Value;
