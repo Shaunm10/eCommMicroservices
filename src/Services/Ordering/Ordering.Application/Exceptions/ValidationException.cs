@@ -1,0 +1,19 @@
+using FluentValidation.Results;
+
+namespace Ordering.Application.Exceptions;
+
+public class ValidationException : ApplicationException
+{
+    public IDictionary<string, string[]> Errors = new Dictionary<string, string[]>();
+
+    public ValidationException() : base("One or more validation failures have occurred.")
+    {
+    }
+
+    public ValidationException(IEnumerable<ValidationFailure> failures)
+    {
+        this.Errors = failures
+            .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
+            .ToDictionary(group => group.Key, group => group.ToArray());
+    }
+}
