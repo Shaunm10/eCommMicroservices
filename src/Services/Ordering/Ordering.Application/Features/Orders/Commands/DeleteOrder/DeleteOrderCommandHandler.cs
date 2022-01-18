@@ -2,6 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Ordering.Application.Contracts.Persistence;
+using Ordering.Application.Exceptions;
+using Ordering.Domain.Entities;
 
 namespace Ordering.Application.Features.Orders.Commands.DeleteOrder;
 
@@ -23,7 +25,7 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
         var existingOrder = await this._orderRepository.GetByIdAsync(request.Id);
         if (existingOrder is null)
         {
-            this._logger.LogWarning("Unable to delete order with orderId {Id} because it's not found.", request.Id);
+            throw new NotFoundException(nameof(Order), request.Id);
         }
         else
         {
