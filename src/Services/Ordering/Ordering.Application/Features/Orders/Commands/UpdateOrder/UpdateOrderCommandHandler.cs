@@ -28,12 +28,12 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
         {
             throw new NotFoundException(nameof(Order), request.Id);
         }
-        
+
         // this is acting like a JavaScript spread operation
         this._mapper.Map(request, existingOrder, typeof(UpdateOrderCommand), typeof(Order));
 
         await this._orderRepository.UpdateAsync(existingOrder);
-        
+
         return Unit.Value;
     }
 }

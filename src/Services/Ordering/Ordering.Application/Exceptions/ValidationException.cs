@@ -4,9 +4,9 @@ namespace Ordering.Application.Exceptions;
 
 public class ValidationException : ApplicationException
 {
-    public IDictionary<string, string[]> Errors {get;}
+    public IDictionary<string, string[]> Errors { get; }
 
-    public ValidationException() 
+    public ValidationException()
         : base("One or more validation failures have occurred.")
     {
         this.Errors = new Dictionary<string, string[]>();

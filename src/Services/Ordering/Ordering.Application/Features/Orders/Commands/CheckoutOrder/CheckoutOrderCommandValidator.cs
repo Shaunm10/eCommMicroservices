@@ -7,15 +7,20 @@ public class CheckoutOrderCommandValidator : AbstractValidator<CheckoutOrderComm
     public CheckoutOrderCommandValidator()
     {
         this.RuleFor(x => x.UserName)
-            .NotEmpty().WithMessage("{UserName} is required.")
+            .NotEmpty()
+            .WithMessage("{UserName} is required.")
             .NotNull()
-            .MaximumLength(50).WithMessage("{UserName} must not exceed 50 characters.");
+            .MaximumLength(50)
+            .WithMessage("{UserName} must not exceed 50 characters.");
 
         this.RuleFor(x => x.EmailAddress)
-            .NotEmpty().WithMessage("{EmailAddress} is required.");
+            .NotEmpty()
+            .WithMessage("{EmailAddress} is required.");
 
         this.RuleFor(x => x.TotalPrice)
-            .NotEmpty().WithMessage("{TotalPrice} is required.")
-            .GreaterThan(0).WithMessage("{TotalPrice} should be greater than zero.");
+            .NotEmpty()
+            .WithMessage("{TotalPrice} is required.")
+            .GreaterThan(0)
+            .WithMessage("{TotalPrice} should be greater than zero.");
     }
 }
