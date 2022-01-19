@@ -1,4 +1,11 @@
+using Ordering.Application;
+using Ordering.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// custom service extensions from different projects
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
 
 // Add services to the container.
 builder.Services.AddControllers();
