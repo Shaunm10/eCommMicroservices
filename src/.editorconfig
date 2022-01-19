@@ -13,4 +13,4 @@ dotnet_diagnostic.SA1413.severity = none
 dotnet_diagnostic.SA1309.severity = none
 
 [*.{cs,vb}]
-indent_style=tab
+indent_style=space
