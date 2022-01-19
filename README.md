@@ -148,6 +148,8 @@ Different enhancements to add.
   - [ ] Coupon.Grpc
 - [x] Create a Discount.Business project to hold services and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
+- [ ] Add Cancellation Tokens to all Api's
+- [ ] Add Version Response header all Api's
 - [ ] Health checks
   - [ ] Alive
   - [ ] Dependencies
