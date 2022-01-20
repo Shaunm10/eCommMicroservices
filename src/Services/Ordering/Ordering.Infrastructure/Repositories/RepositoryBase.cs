@@ -9,41 +9,41 @@ namespace Ordering.Infrastructure.Repositories;
 public class RepositoryBase<T> : IAsyncRepository<T>
     where T : EntityBase
 {
-    private readonly OrderContext _dbContext;
+    protected readonly OrderContext dbContext;
 
     public RepositoryBase(OrderContext orderContext)
     {
-        this._dbContext = orderContext ?? throw new ArgumentNullException(nameof(orderContext));
+        this.dbContext = orderContext ?? throw new ArgumentNullException(nameof(orderContext));
     }
 
     public async Task<T> AddAsync(T entity)
     {
-       this._dbContext.Set<T>().Add(entity);
-       await this._dbContext.SaveChangesAsync();
-       return entity;
+        this.dbContext.Set<T>().Add(entity);
+        await this.dbContext.SaveChangesAsync();
+        return entity;
     }
 
     public async Task DeleteAsync(T entity)
     {
-        this._dbContext.Set<T>().Remove(entity);
-        await this._dbContext.SaveChangesAsync();
+        this.dbContext.Set<T>().Remove(entity);
+        await this.dbContext.SaveChangesAsync();
     }
 
     public async Task<IReadOnlyList<T>> GetAllAsync()
     {
-        return await this._dbContext.Set<T>().ToListAsync();
+        return await this.dbContext.Set<T>().ToListAsync();
     }
 
     public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
     {
-        return await this._dbContext.Set<T>()
+        return await this.dbContext.Set<T>()
            .Where(predicate)
            .ToListAsync();
     }
 
     public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, string? includeString = null, bool disableTracking = true)
     {
-        IQueryable<T> query = this._dbContext.Set<T>();
+        IQueryable<T> query = this.dbContext.Set<T>();
 
         if (disableTracking)
         {
@@ -70,7 +70,7 @@ public class RepositoryBase<T> : IAsyncRepository<T>
 
     public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, List<Expression<Func<T, object>>>? includes = null, bool disableTracking = true)
     {
-        IQueryable<T> query = this._dbContext.Set<T>();
+        IQueryable<T> query = this.dbContext.Set<T>();
 
         if (disableTracking)
         {
@@ -86,7 +86,7 @@ public class RepositoryBase<T> : IAsyncRepository<T>
         {
             query = includes.Aggregate(query, (current, include) => current.Include(include));
         }
-        
+
         if (orderBy is not null)
         {
             return await orderBy(query).ToListAsync();
@@ -97,12 +97,12 @@ public class RepositoryBase<T> : IAsyncRepository<T>
 
     public async Task<T?> GetByIdAsync(int id)
     {
-        return await this._dbContext.Set<T>().FindAsync(id);
+        return await this.dbContext.Set<T>().FindAsync(id);
     }
 
     public async Task UpdateAsync(T entity)
     {
-        this._dbContext.Entry(entity).State = EntityState.Modified;
-        await this._dbContext.SaveChangesAsync();
+        this.dbContext.Entry(entity).State = EntityState.Modified;
+        await this.dbContext.SaveChangesAsync();
     }
 }
