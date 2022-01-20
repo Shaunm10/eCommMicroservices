@@ -97,6 +97,11 @@ E-commerce Micro services implementation
 
 `> dotnet add reference ../Ordering.Domain/`
 
+#### Add Entity Framework migration
+(In directory of Infrastructure project)
+
+`> dotnet ef migrations add Initial`
+
 ## PG Sql
 
 #### Create discounts table
