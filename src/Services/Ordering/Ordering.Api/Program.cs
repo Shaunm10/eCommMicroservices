@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // custom service extensions from different projects
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllers();
