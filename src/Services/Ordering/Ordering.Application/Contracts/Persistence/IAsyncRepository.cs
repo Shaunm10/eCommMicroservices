@@ -46,7 +46,7 @@ public interface IAsyncRepository<T>
     /// </summary>
     /// <param name="id">The primary identifier of the entity</param>
     /// <returns></returns>
-    Task<T> GetByIdAsync(int id);
+    Task<T?> GetByIdAsync(int id);
 
     /// <summary>
     /// Add an Entity
