@@ -1,22 +1,24 @@
 ﻿using Microsoft.Extensions.Logging;
 using Ordering.Domain.Entities;
 
-namespace Ordering.Infrastructure.Persistence
-{
-    public class OrderContextSeed
-    {
-        public static async Task SeedAsync(OrderContext orderContext, ILogger<OrderContextSeed> logger)
-        {
-            // if there are no records yet.
-            if (!orderContext.Orders.Any())
-            {
-                orderContext.Orders.AddRange();
-            }
-        }
+namespace Ordering.Infrastructure.Persistence;
 
-        private static IEnumerable<Order> GetPreconfiguredOrders()
+public class OrderContextSeed
+{
+    public static async Task SeedAsync(OrderContext orderContext, ILogger<OrderContextSeed> logger)
+    {
+        // if there are no records yet.
+        if (orderContext.Orders is not null && !orderContext.Orders.Any())
         {
-            return new List<Order>
+            orderContext.Orders.AddRange(GetPreconfiguredOrders());
+            await orderContext.SaveChangesAsync();
+            logger.LogInformation("Seed database associated with context {DbContextName}", nameof(OrderContextSeed));
+        }
+    }
+
+    private static IEnumerable<Order> GetPreconfiguredOrders()
+    {
+        return new List<Order>
             {
                 new Order
                 {
@@ -29,7 +31,5 @@ namespace Ordering.Infrastructure.Persistence
                     TotalPrice = 868.57M
                 }
             };
-
-        }
     }
 }
