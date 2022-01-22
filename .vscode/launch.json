@@ -23,7 +23,6 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "Build",
-
       // If you have changed target frameworks, make sure to update the program path.
       "program": "${workspaceFolder}/src/Services/Catalog/Catalog.Api/bin/Debug/net6.0/Catalog.Api.dll",
       "args": [],
@@ -50,11 +49,36 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "Build",
-
       // If you have changed target frameworks, make sure to update the program path.
       "program": "${workspaceFolder}/src/Services/Basket/Basket.Api/bin/Debug/net6.0/Basket.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/Services/Basket/Basket.Api",
+      "stopAtEntry": false,
+      // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger/index.html"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      // Use IntelliSense to find out which attributes exist for C# debugging
+      // Use hover for the description of the existing attributes
+      // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+      "name": "Launch Order.Api",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Build",
+      // If you have changed target frameworks, make sure to update the program path.
+      "program": "${workspaceFolder}/src/Services/Ordering/Ordering.Api/bin/Debug/net6.0/Ordering.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Ordering/Ordering.Api",
       "stopAtEntry": false,
       // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
       "serverReadyAction": {
@@ -78,7 +102,10 @@
   "compounds": [
     {
       "name": "Launch All Api's",
-      "configurations": ["Launch Catalog.Api", "Launch Basket.Api"]
+      "configurations": [
+        "Launch Catalog.Api",
+        "Launch Basket.Api"
+      ]
     }
   ]
 }
