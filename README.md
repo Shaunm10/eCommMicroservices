@@ -162,6 +162,7 @@ Different enhancements to add.
 - [ ] Document methods and DTO properties in Web.Api projects
 - [ ] Add better Support for Visual Studio 2022 for Mac (`<LangVersion>10</LangVersion>`)
 - [ ] Add a better Postgres DB Migration setup
+- [ ] Dapac for Order Sql DB - [Dacpac in Docker](https://www.atmosera.com/blog/devops-sql-server-dacpac-docker/)
 - [ ] Make use of C# records for DTO's. Research -> [Record Video](https://www.youtube.com/watch?v=9Byvwa9yF-I)
 - [ ] Make the EntityBase use Id's instead of Strings
 - [ ] Add Unit Test
