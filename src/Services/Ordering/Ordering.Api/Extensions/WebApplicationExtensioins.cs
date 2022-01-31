@@ -47,12 +47,15 @@ namespace Ordering.Api.Extensions
 
         private static void InvokeSeeder<TContext>(
             Action<TContext, IServiceProvider> seeder,
-            TContext context,
+            TContext? context,
             IServiceProvider services)
                 where TContext : DbContext
         {
-            context.Database.Migrate();
-            seeder(context, services);
+            if (context != null)
+            {
+                context.Database.Migrate();
+                seeder(context, services);
+            }
         }
     }
 }
