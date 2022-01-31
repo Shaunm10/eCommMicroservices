@@ -137,6 +137,7 @@ to force the images to be rebuilt:
 | Catalog.Api   | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
 | Basket.Api    | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
 | Discount.Api  | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
+| Order.Api     | [http://localhost:8004/swagger/index.html](http://localhost:8004/swagger/index.html) |
 | Discount.Grpc | [http://localhost:8003](http://localhost:8003)                                       |
 | Portainer     | [http://localhost:9000](http://localhost:9000)                                       |
 | PGAdmin4      | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |

@@ -37,11 +37,19 @@ services:
       context: .
       dockerfile: Services/Discount/Discount.Api/Dockerfile
 
+  
+
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc
     build:
       context: .
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+      
+  order.api:
+    image: ${DOCKER_REGISTRY-}orderapi
+    build:
+      context: .
+      dockerfile: Services/Order/Order.Api/Dockerfile
 
 volumes:
   mongo_data: null
