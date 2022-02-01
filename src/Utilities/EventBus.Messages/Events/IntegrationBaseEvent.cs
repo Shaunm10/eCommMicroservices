@@ -1,5 +1,3 @@
-
-
 namespace EventBus.Messages.Events;
 
 public class IntegrationBaseEvent
@@ -10,10 +8,10 @@ public class IntegrationBaseEvent
         this.CreationDateUtc = DateTime.UtcNow;
     }
 
-    public IntegrationBaseEvent(Guid id, DateTime createDateTimeUtc)
+    public IntegrationBaseEvent(Guid id, DateTime createDate)
     {
         this.Id = id;
-        this.CreationDateUtc = createDateTimeUtc;
+        this.CreationDateUtc = createDate;
     }
 
     public Guid Id { get; set; }

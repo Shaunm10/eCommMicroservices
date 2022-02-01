@@ -2,6 +2,7 @@ using System.Net;
 using Basket.Api.Entities.V1;
 using Basket.Api.GrpcServices;
 using Basket.Api.Repositories;
+using EventBus.Messages.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.Api.Controllers.V1;
@@ -58,5 +59,18 @@ public class BasketController : ControllerBase
     {
         await this._basketRepository.DeleteBasket(userName);
         return this.Ok();
+    }
+
+    [HttpPost]
+    [Route("[action]")]
+    [ProducesResponseType((int)HttpStatusCode.Accepted)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> Checkout([FromBody] BasketCheckout basketCheckout)
+    {
+        // get existing basket with total price
+
+        // set totalPrice on bsketCheckout eventMessage
+
+        return this.Accepted();
     }
 }
