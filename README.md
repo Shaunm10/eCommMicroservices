@@ -156,6 +156,7 @@ Different enhancements to add.
 - [x] Create a Discount.Business project to hold services and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Add Cancellation Tokens to all Api's
+- [ ] Add better exception validation responses to Order.Api
 - [ ] Add Version Response header all Api's
 - [ ] Health checks
   - [ ] Alive
