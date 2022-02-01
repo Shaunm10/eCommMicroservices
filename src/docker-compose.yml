@@ -36,9 +36,7 @@ services:
     build:
       context: .
       dockerfile: Services/Discount/Discount.Api/Dockerfile
-
-  
-
+      
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc
     build:
@@ -49,12 +47,11 @@ services:
     image: ${DOCKER_REGISTRY-}orderapi
     build:
       context: .
-      dockerfile: Services/Order/Order.Api/Dockerfile
+      dockerfile: Services/Ordering/Ordering.Api/Dockerfile
 
 volumes:
   mongo_data: null
   portainer_data: null
   postgres_data: null
   pgadmin_data:
-
     null
