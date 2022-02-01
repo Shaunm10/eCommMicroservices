@@ -83,7 +83,7 @@ E-commerce Micro services implementation
 
 #### Add Project to solution (in the Dir of .sln)
 
-`> dotnet new webapi -n Discount.Api`
+`> dotnet sln add .\Utilities\EventBus.Messages`
 
 #### Install a Nuget Package
 
@@ -141,7 +141,10 @@ to force the images to be rebuilt:
 | Discount.Grpc | [http://localhost:8003](http://localhost:8003)                                       |
 | Portainer     | [http://localhost:9000](http://localhost:9000)                                       |
 | PGAdmin4      | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
+| RabbitMQ Console      | [http://localhost:15672/](http://localhost:15672/)       guest:guest  |
 
+
+http://localhost:15672/
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
 
 ## Side Tasks
