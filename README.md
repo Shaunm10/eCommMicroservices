@@ -151,7 +151,7 @@ http://localhost:15672/
 
 Different enhancements to add.
 
-- [ ] Version the Api for External consumers
+- [ ] Version the Api for External consumers (Both Controllers and DTO/VM's)
   - [ ] Basket.Api
   - [ ] Catalog.Api
   - [ ] Coupon.Api
@@ -160,6 +160,7 @@ Different enhancements to add.
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Add Cancellation Tokens to all Api's
 - [ ] Add better exception validation responses to Order.Api
+- [ ] Make a business service for the BasketController.Checkout()
 - [ ] Add Version Response header all Api's
 - [ ] Health checks
   - [ ] Alive

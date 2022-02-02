@@ -32,4 +32,3 @@ public class BasketCheckout
 
     public int PaymentMethodId { get; set; }
 }
-

@@ -14,6 +14,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 // General configuration
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddScoped<IDiscountService, DiscountService>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 // add Grpc Clients
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o =>

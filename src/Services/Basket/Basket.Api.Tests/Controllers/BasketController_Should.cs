@@ -1,9 +1,11 @@
 using System.Threading.Tasks;
+using AutoMapper;
 using Basket.Api.Controllers.V1;
 using Basket.Api.Entities.V1;
 using Basket.Api.GrpcServices;
 using Basket.Api.Repositories;
 using FluentAssertions;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -17,11 +19,15 @@ namespace Basket.Api.Tests.Controllers
         private readonly BasketController controllerUnderTest;
         private readonly Mock<IBasketRepository> basketRepositoryMock;
         private readonly Mock<IDiscountService> discountGrpcMock;
+        private readonly Mock<IMapper> mapperMock;
+        private readonly Mock<IPublishEndpoint> publishEndpointMock;
+
+
         public BasketController_Should()
         {
             this.basketRepositoryMock = new Mock<IBasketRepository>();
             this.discountGrpcMock = new Mock<IDiscountService>();
-            this.controllerUnderTest = new BasketController(this.basketRepositoryMock.Object, this.discountGrpcMock.Object);
+            this.controllerUnderTest = new BasketController(this.basketRepositoryMock.Object, this.discountGrpcMock.Object, this.mapperMock.Object, this.publishEndpointMock.Object);
         }
 
         [Fact]
