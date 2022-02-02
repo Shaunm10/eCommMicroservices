@@ -27,6 +27,8 @@ namespace Basket.Api.Tests.Controllers
         {
             this.basketRepositoryMock = new Mock<IBasketRepository>();
             this.discountGrpcMock = new Mock<IDiscountService>();
+            this.mapperMock = new Mock<IMapper>();
+            this.publishEndpointMock = new Mock<IPublishEndpoint>();
             this.controllerUnderTest = new BasketController(this.basketRepositoryMock.Object, this.discountGrpcMock.Object, this.mapperMock.Object, this.publishEndpointMock.Object);
         }
 
