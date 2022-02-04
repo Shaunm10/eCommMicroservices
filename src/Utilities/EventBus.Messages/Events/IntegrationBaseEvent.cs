@@ -1,5 +1,8 @@
 namespace EventBus.Messages.Events;
 
+/// <summary>
+/// The common base for all Messages going through the service bus.
+/// </summary>
 public class IntegrationBaseEvent
 {
     public IntegrationBaseEvent()

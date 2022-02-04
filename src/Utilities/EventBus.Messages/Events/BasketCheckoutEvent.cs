@@ -1,5 +1,8 @@
 ﻿namespace EventBus.Messages.Events;
 
+/// <summary>
+/// The checkout message
+/// </summary>
 public class BasketCheckoutEvent : IntegrationBaseEvent
 {
     public string? UserName { get; set; }
@@ -30,5 +33,5 @@ public class BasketCheckoutEvent : IntegrationBaseEvent
 
     public string? CVV { get; set; }
 
-    public int PaymentMethodId { get; set; }
+    public int? PaymentMethodId { get; set; }
 }
