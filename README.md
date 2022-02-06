@@ -152,6 +152,7 @@ http://localhost:15672/
 Different enhancements to add.
 
 - [ ] Version the Api for External consumers (Both Controllers and DTO/VM's)
+  - [ ] [Article](https://referbruv.com/blog/posts/integrating-aspnet-core-api-versions-with-swagger-ui)
   - [ ] Basket.Api
   - [ ] Catalog.Api
   - [ ] Coupon.Api
