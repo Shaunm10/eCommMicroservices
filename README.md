@@ -159,6 +159,8 @@ Different enhancements to add.
   - [ ] Coupon.Grpc
 - [x] Create a Discount.Business project to hold services and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
+- [ ] Improve Swagger DTO comments/usage.
+- [ ] Make the casing of private variables consistent.
 - [ ] Add Cancellation Tokens to all Api's
 - [ ] Add better exception validation responses to Order.Api
 - [ ] Make a business service for the BasketController.Checkout()

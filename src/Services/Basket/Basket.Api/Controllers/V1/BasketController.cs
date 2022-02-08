@@ -91,10 +91,10 @@ public class BasketController : ControllerBase
         var eventMessage = this._mapper.Map<BasketCheckoutEvent>(basketCheckout);
         eventMessage.TotalPrice = basket.TotalPrice;
 
-        // send checkout event to rabbitmq
+        // send checkout event to the service bus
         await this._publishEndpoint.Publish(eventMessage);
 
-        // remove the basket from repository.
+        // remove the basket from repository since it has moved to fulfillment
         await this._basketRepository.DeleteBasket(basketCheckout.UserName);
 
         return this.Accepted();

@@ -15,7 +15,9 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 // Add services for MassTransit/RabbitMQ
 builder.Services.AddMassTransit(massTransitConfig =>
 {
+    // tell's mass transit who gets to receive the messages.
     massTransitConfig.AddConsumer<BasketCheckoutConsumer>();
+
     massTransitConfig.UsingRabbitMq((context, rabbitMqConfig) =>
     {
         var hostAddress = builder.Configuration.GetValue<string>("EventBusSettings:HostAddress");
