@@ -132,17 +132,16 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 to force the images to be rebuilt:
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d --build`
 
-| Resource      | Url (In Docker-compose)                                                              |
-| ------------- | ------------------------------------------------------------------------------------ |
-| Catalog.Api   | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
-| Basket.Api    | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
-| Discount.Api  | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
-| Order.Api     | [http://localhost:8004/swagger/index.html](http://localhost:8004/swagger/index.html) |
-| Discount.Grpc | [http://localhost:8003](http://localhost:8003)                                       |
-| Portainer     | [http://localhost:9000](http://localhost:9000)                                       |
-| PGAdmin4      | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
-| RabbitMQ Console      | [http://localhost:15672/](http://localhost:15672/)       guest:guest  |
-
+| Resource         | Url (In Docker-compose)                                                              |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| Catalog.Api      | [http://localhost:8000/swagger/index.html](http://localhost:8000/swagger/index.html) |
+| Basket.Api       | [http://localhost:8001/swagger/index.html](http://localhost:8001/swagger/index.html) |
+| Discount.Api     | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
+| Order.Api        | [http://localhost:8004/swagger/index.html](http://localhost:8004/swagger/index.html) |
+| Discount.Grpc    | [http://localhost:8003](http://localhost:8003)                                       |
+| Portainer        | [http://localhost:9000](http://localhost:9000)                                       |
+| PGAdmin4         | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
+| RabbitMQ Console | [http://localhost:15672/](http://localhost:15672/) guest:guest                       |
 
 http://localhost:15672/
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
@@ -175,6 +174,7 @@ Different enhancements to add.
 - [ ] Dapac for Order Sql DB - [Dacpac in Docker](https://www.atmosera.com/blog/devops-sql-server-dacpac-docker/) [Dacpac](https://docs.microsoft.com/en-us/sql/azure-data-studio/extensions/sql-database-project-extension?view=sql-server-ver15)
 - [ ] Make use of C# records for DTO's. Research -> [Record Video](https://www.youtube.com/watch?v=9Byvwa9yF-I)
 - [ ] Make the EntityBase use Id's instead of Strings
+- [ ] Create Draw.io Diagrams to show how these services interact
 - [ ] Add Unit Test
   - [ ] Catalog.Api
   - [ ] Discount.Api

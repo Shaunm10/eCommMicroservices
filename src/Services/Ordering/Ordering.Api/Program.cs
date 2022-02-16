@@ -31,6 +31,12 @@ builder.Services.AddMassTransit(massTransitConfig =>
 
 builder.Services.AddMassTransitHostedService();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
+// TODO: See if this is really necessary, I would think supplying this as the
+// type would make it not necessary.
+builder.Services.AddScoped<BasketCheckoutConsumer>();
+
 // Add services to the container.
 builder.Services.AddControllers();
 
