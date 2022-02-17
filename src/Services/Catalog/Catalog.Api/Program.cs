@@ -39,7 +39,7 @@ try
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
-        app.UseSwaggerUI();
+        app.UseSwaggerUI(x => x.DocumentTitle = "Swagger UI - Catalog.Api");
     }
 
     app.UseAuthorization();

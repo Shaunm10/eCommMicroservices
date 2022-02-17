@@ -59,7 +59,7 @@ app.MigrateDatabase<OrderContext>((context, service) =>
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(x => x.DocumentTitle = "Swagger UI - Ordering.Api");
 }
 
 app.UseAuthorization();

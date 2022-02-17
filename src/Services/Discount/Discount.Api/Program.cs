@@ -30,7 +30,7 @@ if (npgConnectionString != null)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(x => x.DocumentTitle = "Swagger UI - Discount.Api");
 }
 
 app.UseAuthorization();
