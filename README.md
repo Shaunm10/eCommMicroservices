@@ -129,7 +129,12 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d`
 
-to force the images to be rebuilt:
+#### Run the docker compose files on M1 MacOs
+
+`> docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.override-M1.yml up -d`
+
+#### Force the images to be rebuilt:
+
 `> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d --build`
 
 | Resource         | Url (In Docker-compose)                                                              |
