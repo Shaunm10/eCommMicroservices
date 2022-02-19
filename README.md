@@ -18,7 +18,7 @@ E-commerce Micro services implementation
 
 ##### Open a terminal to the container
 
-`> docker exec -it shopping-mongo /bin/bash`
+`> docker exec -it shopping-mongo/bin/bash`
 
 ## Mongo Commands
 

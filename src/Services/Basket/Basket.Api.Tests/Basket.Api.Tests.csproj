@@ -8,7 +8,8 @@
   </PropertyGroup>
 
  <ItemGroup>
-  <ProjectReference Include="../Basket.Api/Basket.Api.csproj"></ProjectReference>
+  <ProjectReference Include="../Basket.Api/Basket.Api.csproj">
+  </ProjectReference>
 </ItemGroup>
 
   <ItemGroup>
