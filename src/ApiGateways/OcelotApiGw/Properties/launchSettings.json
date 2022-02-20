@@ -17,7 +17,7 @@
     "OcelotApiGw": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7034;http://localhost:5101",
+      "applicationUrl": "http://localhost:5010",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local"
       }
