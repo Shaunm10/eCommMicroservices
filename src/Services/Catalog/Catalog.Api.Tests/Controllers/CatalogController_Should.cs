@@ -1,4 +1,5 @@
 using Catalog.Api.Controllers;
+using Catalog.Api.Controllers.v1;
 using Catalog.Api.Entities;
 using Catalog.Api.Repositories;
 using FluentAssertions;

@@ -30,7 +30,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Controllers\v1\" />
+	</ItemGroup>
+	<ItemGroup>
 		<None Include="..\..\..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controllers\v1\" />
+	</ItemGroup>
 </Project>

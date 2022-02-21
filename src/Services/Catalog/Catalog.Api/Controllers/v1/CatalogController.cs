@@ -3,7 +3,7 @@ using Catalog.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Catalog.Api.Controllers
+namespace Catalog.Api.Controllers.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
