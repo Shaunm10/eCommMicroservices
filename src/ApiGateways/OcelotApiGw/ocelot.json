@@ -99,7 +99,7 @@
       "UpstreamPathTemplate": "/Discount/",
       "UpstreamHttpMethod": ["POST", "PUT"]
     },
-    // order API
+    // order API -  note we are only exposing the GET endpoint.
     {
       "DownstreamPathTemplate": "/api/v1/Order/{userName}",
       "DownstreamScheme": "http",
