@@ -11,7 +11,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Catalog",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": ["GET", "POST", "PUT"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog/{id}",
@@ -23,7 +23,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Catalog/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog/GetProductsByCategory/{category}",
@@ -35,8 +35,8 @@
         }
       ],
       "UpstreamPathTemplate": "/Catalog/GetProductsByCategory/{category}",
-      "UpstreamHttpMethod": [ "GET" ]
-    }
+      "UpstreamHttpMethod": ["GET"]
+    },
     // Basket API
     {
       "DownstreamPathTemplate": "/api/v1/Basket/{userName}",
@@ -48,7 +48,69 @@
         }
       ],
       "UpstreamPathTemplate": "/Basket/{userName}",
-      "UpstreamHttpMethod": [ "GET","DELETE"]
+      "UpstreamHttpMethod": ["GET", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Basket",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Basket",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Basket/Checkout",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Basket/Checkout",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    // Discount API's
+    {
+      "DownstreamPathTemplate": "/api/v1/Discount/{productId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Discount/{productId}",
+      "UpstreamHttpMethod": ["GET", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Discount",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Discount/",
+      "UpstreamHttpMethod": ["POST", "PUT"]
+    },
+    // order API
+    {
+      "DownstreamPathTemplate": "/api/v1/Order/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8004"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/{userName}",
+      "UpstreamHttpMethod": ["GET"]
     }
   ],
   "GlobalConfiguration": {
