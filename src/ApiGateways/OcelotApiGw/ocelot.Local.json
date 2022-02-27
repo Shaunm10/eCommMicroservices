@@ -1,4 +1,5 @@
 ﻿{
+  "$schema": "https://json.schemastore.org/ocelot.json",
   "Routes": [
     //Catalop API
     {
@@ -11,7 +12,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Catalog",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": ["GET", "POST", "PUT"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog/{id}",
@@ -23,7 +24,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Catalog/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog/GetProductsByCategory/{category}",
@@ -35,7 +36,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Catalog/GetProductsByCategory/{category}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     // Basket API
     {
@@ -48,7 +49,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Basket/{userName}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Basket",
@@ -60,7 +61,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Basket",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Basket/Checkout",
@@ -72,7 +73,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Basket/Checkout",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     // Discount API's
     {
@@ -85,7 +86,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Discount/{productId}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/v1/Discount",
@@ -97,7 +98,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Discount/",
-      "UpstreamHttpMethod": [ "POST", "PUT" ]
+      "UpstreamHttpMethod": ["POST", "PUT"]
     },
     // order API -  note we are only exposing the GET endpoint.
     {
@@ -110,7 +111,7 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/{userName}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     }
   ],
   "GlobalConfiguration": {

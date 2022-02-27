@@ -1,4 +1,5 @@
 ﻿{
+  "$schema": "https://json.schemastore.org/ocelot.json",
   "Routes": [
     //Catalop API
     {
