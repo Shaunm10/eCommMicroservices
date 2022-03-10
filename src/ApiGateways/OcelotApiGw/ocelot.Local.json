@@ -8,11 +8,12 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8000"
+          "Port": 8000
         }
       ],
       "UpstreamPathTemplate": "/Catalog",
-      "UpstreamHttpMethod": ["GET", "POST", "PUT"]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+     
     },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog/{id}",
@@ -20,7 +21,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8000"
+          "Port": 8000
         }
       ],
       "UpstreamPathTemplate": "/Catalog/{id}",
@@ -32,7 +33,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8000"
+          "Port": 8000
         }
       ],
       "UpstreamPathTemplate": "/Catalog/GetProductsByCategory/{category}",
@@ -45,7 +46,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8001"
+          "Port": 8001
         }
       ],
       "UpstreamPathTemplate": "/Basket/{userName}",
@@ -57,7 +58,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8001"
+          "Port": 8001
         }
       ],
       "UpstreamPathTemplate": "/Basket",
@@ -69,11 +70,18 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8001"
+          "Port": 8001
         }
       ],
       "UpstreamPathTemplate": "/Basket/Checkout",
-      "UpstreamHttpMethod": ["POST"]
+      "UpstreamHttpMethod": [ "POST" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "3s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
     },
     // Discount API's
     {
@@ -82,7 +90,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8002"
+          "Port": 8002
         }
       ],
       "UpstreamPathTemplate": "/Discount/{productId}",
@@ -94,7 +102,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8002"
+          "Port": 8002
         }
       ],
       "UpstreamPathTemplate": "/Discount/",
@@ -107,7 +115,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "8004"
+          "Port": 8004
         }
       ],
       "UpstreamPathTemplate": "/Order/{userName}",
