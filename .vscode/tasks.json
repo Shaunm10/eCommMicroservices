@@ -51,7 +51,6 @@
     {
       "label": "Docker Compose Up",
       "command": "docker-compose",
-
       "type": "shell",
       "isBackground": false,
       "problemMatcher": [
@@ -71,7 +70,6 @@
           }
         }
       ],
-
       "presentation": {
         "focus": true
       },
@@ -105,7 +103,6 @@
           }
         }
       ],
-
       "presentation": {
         "focus": true
       },

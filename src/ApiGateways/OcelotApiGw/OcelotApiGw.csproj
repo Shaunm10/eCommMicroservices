@@ -4,14 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
       <PackageReference Include="Ocelot" Version="18.0.0" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
+      <PackageReference Include="Ocelot.Cache.CacheManager" Version="18.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,4 +34,7 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Ocelot.Cache.CacheManager" />
+  </ItemGroup>
 </Project>
