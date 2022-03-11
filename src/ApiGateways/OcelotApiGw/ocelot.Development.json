@@ -101,8 +101,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8002
+          "Host": "discount.api",
+          "Port": 80 /* The port in the docker network */
         }
       ],
       "UpstreamPathTemplate": "/Discount/",
@@ -114,8 +114,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8004
+          "Host": "ordering.api",
+          "Port": 80 /* The port in the docker network */
         }
       ],
       "UpstreamPathTemplate": "/Order/{userName}",
