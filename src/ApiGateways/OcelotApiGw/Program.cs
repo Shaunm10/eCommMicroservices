@@ -12,16 +12,15 @@ builder.Logging.AddDebug();
 var environmentName = builder.Environment.EnvironmentName;
 
 // pull the config for the current environment.
-builder.Configuration.AddJsonFile($"ocelot.{environmentName}.json" ,true, true);
+builder.Configuration.AddJsonFile($"ocelot.{environmentName}.json", true, true);
 
 // adds cacheing to Ocelot
 builder.Services.AddOcelot()
     .AddCacheManager(settings => settings.WithDictionaryHandle());
 
 var app = builder.Build();
-
-await app.UseOcelot();
-
 app.MapGet("/", () => "Ocelot Gateway.");
+
+app.UseOcelot();
 
 app.Run();

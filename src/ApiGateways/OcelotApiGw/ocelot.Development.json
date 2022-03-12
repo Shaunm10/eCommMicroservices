@@ -1,13 +1,13 @@
 ﻿{
   "$schema": "https://json.schemastore.org/ocelot.json",
   "Routes": [
-    //Catalop API
+    //Catalog API
     {
       "DownstreamPathTemplate": "/api/v1/Catalog",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "catlog.api",
+          "Host": "catalog.api",
           "Port": 80 /* The port in the docker network*/
         }
       ],
@@ -20,7 +20,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "catlog.api",
+          "Host": "catalog.api",
           "Port": 80 /* The port in the docker network*/
         }
       ],
@@ -32,7 +32,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "catlog.api",
+          "Host": "catalog.api",
           "Port": 80 /* The port in the docker network */
         }
       ],
@@ -114,7 +114,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "ordering.api",
+          "Host": "order.api",
           "Port": 80 /* The port in the docker network */
         }
       ],
