@@ -10,6 +10,7 @@ builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 
 var environmentName = builder.Environment.EnvironmentName;
+var configuration = builder.Configuration;
 
 // pull the config for the current environment.
 builder.Configuration.AddJsonFile($"ocelot.{environmentName}.json", true, true);

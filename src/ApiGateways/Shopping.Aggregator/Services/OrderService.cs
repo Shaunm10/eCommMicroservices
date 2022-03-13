@@ -5,8 +5,11 @@ namespace Shopping.Aggregator.Services;
 
 public class OrderService : IOrderService
 {
-    public OrderService()
+    private readonly HttpClient _http;
+
+    public OrderService(HttpClient http)
     {
+        this._http = http;
     }
 
     public Task<IEnumerable<OrderResponseModel>> GetOrderByUserName(string userName)

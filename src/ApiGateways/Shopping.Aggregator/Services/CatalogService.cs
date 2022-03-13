@@ -5,8 +5,11 @@ namespace Shopping.Aggregator.Services;
 
 public class CatalogService : ICatalogService
 {
-    public CatalogService()
+    private readonly HttpClient _http;
+
+    public CatalogService(HttpClient http)
     {
+        this._http = http;
     }
 
     public Task<IEnumerable<CatalogModel>> GetCatalog()
