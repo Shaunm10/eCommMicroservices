@@ -5,11 +5,11 @@ namespace Shopping.Aggregator.Services;
 
 public class CatalogService : ICatalogService
 {
-    private readonly HttpClient _http;
+    private readonly HttpClient _client;
 
-    public CatalogService(HttpClient http)
+    public CatalogService(HttpClient client)
     {
-        this._http = http;
+        this._client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
     public Task<IEnumerable<CatalogModel>> GetCatalog()

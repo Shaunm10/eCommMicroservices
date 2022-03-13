@@ -5,11 +5,11 @@ namespace Shopping.Aggregator.Services;
 
 public class BasketService : IBasketService
 {
-    private readonly HttpClient _http;
+    private readonly HttpClient _client;
 
-    public BasketService(HttpClient http)
+    public BasketService(HttpClient client)
     {
-        this._http = http;
+        this._client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
     public Task<BasketModel> GetBasket(string userName)

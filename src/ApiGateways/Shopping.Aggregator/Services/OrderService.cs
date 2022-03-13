@@ -5,11 +5,11 @@ namespace Shopping.Aggregator.Services;
 
 public class OrderService : IOrderService
 {
-    private readonly HttpClient _http;
+    private readonly HttpClient _client;
 
-    public OrderService(HttpClient http)
+    public OrderService(HttpClient client)
     {
-        this._http = http;
+        this._client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
     public Task<IEnumerable<OrderResponseModel>> GetOrderByUserName(string userName)
