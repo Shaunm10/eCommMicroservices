@@ -28,7 +28,7 @@ public class CatalogService : ICatalogService
 
     public async Task<IEnumerable<CatalogModel>> GetCatalogByCategory(string categoryName)
     {
-        var response = await this._client.GetAsync($"/api/v1/Catalog/{categoryName}");
+        var response = await this._client.GetAsync($"/api/v1/Catalog/GetProductsByCategory/{categoryName}");
         return await response.ReadContentAs<List<CatalogModel>>() ?? new List<CatalogModel>();
     }
 }
