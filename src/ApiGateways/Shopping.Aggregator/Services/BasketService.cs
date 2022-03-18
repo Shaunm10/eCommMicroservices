@@ -13,7 +13,7 @@ public class BasketService : IBasketService
         this._client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
-    public async Task<BasketModel?> GetBasket(string userName)
+    public async Task<BasketModel?> GetBasketAsync(string userName)
     {
         var response = await this._client.GetAsync($"/api/v1/Basket/{userName}");
 
