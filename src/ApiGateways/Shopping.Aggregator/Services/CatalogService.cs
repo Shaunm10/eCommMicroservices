@@ -16,18 +16,19 @@ public class CatalogService : ICatalogService
     public async Task<IEnumerable<CatalogModel>> GetCatalog()
     {
         var response = await this._client.GetAsync("/api/v1/Catalog");
-        return await response.ReadContentAs<List<CatalogModel>>();
+
+        return await response.ReadContentAs<List<CatalogModel>>() ?? new List<CatalogModel>();
     }
 
-    public async Task<CatalogModel> GetCatalog(string id)
+    public async Task<CatalogModel?> GetCatalog(string id)
     {
         var response = await this._client.GetAsync($"/api/v1/Catalog/{id}");
-        return await response.ReadContentAs<CatalogModel>();
+        return await response.ReadContentAs<CatalogModel?>() ?? null;
     }
 
     public async Task<IEnumerable<CatalogModel>> GetCatalogByCategory(string categoryName)
     {
         var response = await this._client.GetAsync($"/api/v1/Catalog/{categoryName}");
-        return await response.ReadContentAs<List<CatalogModel>>();
+        return await response.ReadContentAs<List<CatalogModel>>() ?? new List<CatalogModel>();
     }
 }
