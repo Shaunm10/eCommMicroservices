@@ -8,5 +8,5 @@ public interface ICatalogService
 
     Task<IEnumerable<CatalogModel>> GetCatalogByCategory(string categoryName);
 
-    Task<CatalogModel?> GetCatalog(string id);
+    Task<CatalogModel?> GetCatalogAsync(string id);
 }

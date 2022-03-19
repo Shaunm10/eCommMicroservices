@@ -20,7 +20,7 @@ public class CatalogService : ICatalogService
         return await response.ReadContentAs<List<CatalogModel>>() ?? new List<CatalogModel>();
     }
 
-    public async Task<CatalogModel?> GetCatalog(string id)
+    public async Task<CatalogModel?> GetCatalogAsync(string id)
     {
         var response = await this._client.GetAsync($"/api/v1/Catalog/{id}");
         return await response.ReadContentAs<CatalogModel?>() ?? null;

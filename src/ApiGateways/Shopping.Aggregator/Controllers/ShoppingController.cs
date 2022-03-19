@@ -24,18 +24,40 @@ public class ShoppingController : ControllerBase
     [ProducesResponseType(typeof(ShoppingModel), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingModel>> GetShopping(string userName)
     {
-        // TODO:
-
         // get basket from userName
         var basket = await this.basketService.GetBasketAsync(userName);
 
+        // if there is no basket, then return short.
+        if (basket is null)
+        {
+            return new ShoppingModel
+            {
+                UserName = userName
+            };
+        }
+
         // iterate basket items and consume products with basket item productId members
+        foreach (var item in basket.Items)
+        {
+            var product = await this.catalogService.GetCatalogAsync(item.ProductId);
 
-        // map product related members nto basketitem dto with extend column
+            // map product related members nto basketitem dto with extend column
+            item.ProductName = product?.Name;
+            item.Category = product?.Category;
+            item.Summary = product?.Summary;
+            item.Description = product?.Description;
+            item.ImageFile = product?.ImageFile;
+        }
 
-        // consume ordering microservices in order to retrieve order list.
+        var orders = await this.orderService.GetOrderByUserNameAsync(userName);
 
-        // return root shoppingModel dto class which includes all responses.
+        var shoppingModel = new ShoppingModel
+        {
+            Orders = orders,
+            BasketWithProducts = basket,
+            UserName = userName
+        };
 
+        return shoppingModel;
     }
 }
