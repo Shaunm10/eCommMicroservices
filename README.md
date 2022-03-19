@@ -197,6 +197,7 @@ Different enhancements to add.
 - [ ] Add Auto registration of DI services -> [NetCore.AutoRegisterDi](https://www.thereformedprogrammer.net/asp-net-core-fast-and-automatic-dependency-injection-setup/)
 - [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects
+- [ ] in the Shopping Aggerage controller refactor the code to be in a service. " put this all into a help service."
 - [ ] Add more Rosslyn Code analyzers
 - [ ] Add Serilog to all WebApi's
 - [ ] Add Debugging capability to VsCode Docker-compose
