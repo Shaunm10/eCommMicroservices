@@ -39,14 +39,17 @@ public class ShoppingController : ControllerBase
         // iterate basket items and consume products with basket item productId members
         foreach (var item in basket.Items)
         {
-            var product = await this.catalogService.GetCatalogAsync(item.ProductId);
+            if (item.ProductId is not null)
+            {
+                var product = await this.catalogService.GetCatalogAsync(item.ProductId);
 
-            // map product related members nto basketitem dto with extend column
-            item.ProductName = product?.Name;
-            item.Category = product?.Category;
-            item.Summary = product?.Summary;
-            item.Description = product?.Description;
-            item.ImageFile = product?.ImageFile;
+                // map product related members nto basketitem dto with extend column
+                item.ProductName = product?.Name;
+                item.Category = product?.Category;
+                item.Summary = product?.Summary;
+                item.Description = product?.Description;
+                item.ImageFile = product?.ImageFile;
+            }
         }
 
         var orders = await this.orderService.GetOrderByUserNameAsync(userName);
