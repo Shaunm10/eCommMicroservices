@@ -58,6 +58,6 @@ public class ShoppingController : ControllerBase
             UserName = userName
         };
 
-        return shoppingModel;
+        return this.Ok(shoppingModel);
     }
 }
