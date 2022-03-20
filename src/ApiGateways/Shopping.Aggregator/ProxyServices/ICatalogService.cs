@@ -1,6 +1,6 @@
 using Shopping.Aggregator.Models;
 
-namespace Shopping.Aggregator.Services;
+namespace Shopping.Aggregator.ProxyServices;
 
 public interface ICatalogService
 {

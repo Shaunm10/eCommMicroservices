@@ -18,4 +18,5 @@ public class BasketItemExtendedModel
 
     public string? ImageFile { get; set; }
     public string? Summary { get; internal set; }
+
 }

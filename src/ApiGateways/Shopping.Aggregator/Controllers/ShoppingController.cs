@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Aggregator.Models;
-using Shopping.Aggregator.Services;
+using Shopping.Aggregator.ProxyServices;
 
 namespace Shopping.Aggregator.Controllers;
 
@@ -24,43 +24,55 @@ public class ShoppingController : ControllerBase
     [ProducesResponseType(typeof(ShoppingModel), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingModel>> GetShopping(string userName)
     {
-        // get basket from userName
-        var basket = await this.basketService.GetBasketAsync(userName);
 
-        // if there is no basket, then return short.
-        if (basket is null)
+        // TODO: put this all into a help service.
+
+        try
         {
-            return new ShoppingModel
+
+            // get basket from userName
+            var basket = await this.basketService.GetBasketAsync(userName);
+
+            // if there is no basket, then return short.
+            if (basket is null)
             {
+                return new ShoppingModel
+                {
+                    UserName = userName
+                };
+            }
+
+            // iterate basket items and consume products with basket item productId members
+            foreach (var item in basket.Items)
+            {
+                if (item.ProductId is not null)
+                {
+                    var product = await this.catalogService.GetCatalogAsync(item.ProductId);
+
+                    // map product related members nto basketitem dto with extend column
+                    item.ProductName = product?.Name;
+                    item.Category = product?.Category;
+                    item.Summary = product?.Summary;
+                    item.Description = product?.Description;
+                    item.ImageFile = product?.ImageFile;
+                }
+            }
+
+            var orders = await this.orderService.GetOrderByUserNameAsync(userName);
+
+            var shoppingModel = new ShoppingModel
+            {
+                Orders = orders,
+                BasketWithProducts = basket,
                 UserName = userName
             };
+
+            return this.Ok(shoppingModel);
         }
-
-        // iterate basket items and consume products with basket item productId members
-        foreach (var item in basket.Items)
+        catch (Exception ex)
         {
-            if (item.ProductId is not null)
-            {
-                var product = await this.catalogService.GetCatalogAsync(item.ProductId);
-
-                // map product related members nto basketitem dto with extend column
-                item.ProductName = product?.Name;
-                item.Category = product?.Category;
-                item.Summary = product?.Summary;
-                item.Description = product?.Description;
-                item.ImageFile = product?.ImageFile;
-            }
+            var error = ex.Message;
+            return new StatusCodeResult(StatusCodes.Status500InternalServerError);
         }
-
-        var orders = await this.orderService.GetOrderByUserNameAsync(userName);
-
-        var shoppingModel = new ShoppingModel
-        {
-            Orders = orders,
-            BasketWithProducts = basket,
-            UserName = userName
-        };
-
-        return this.Ok(shoppingModel);
     }
 }

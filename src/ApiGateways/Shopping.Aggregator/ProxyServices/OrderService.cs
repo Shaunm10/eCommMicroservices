@@ -2,7 +2,7 @@
 using Shopping.Aggregator.Extensions;
 using Shopping.Aggregator.Models;
 
-namespace Shopping.Aggregator.Services;
+namespace Shopping.Aggregator.ProxyServices;
 
 public class OrderService : IOrderService
 {
