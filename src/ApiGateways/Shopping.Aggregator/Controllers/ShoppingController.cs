@@ -27,52 +27,47 @@ public class ShoppingController : ControllerBase
 
         // TODO: put this all into a help service.
 
-        try
+
+
+        // get basket from userName
+        var basket = await this.basketService.GetBasketAsync(userName);
+
+        // if there is no basket, then return short.
+        if (basket is null)
         {
-
-            // get basket from userName
-            var basket = await this.basketService.GetBasketAsync(userName);
-
-            // if there is no basket, then return short.
-            if (basket is null)
+            return new ShoppingModel
             {
-                return new ShoppingModel
-                {
-                    UserName = userName
-                };
-            }
-
-            // iterate basket items and consume products with basket item productId members
-            foreach (var item in basket.Items)
-            {
-                if (item.ProductId is not null)
-                {
-                    var product = await this.catalogService.GetCatalogAsync(item.ProductId);
-
-                    // map product related members nto basketitem dto with extend column
-                    item.ProductName = product?.Name;
-                    item.Category = product?.Category;
-                    item.Summary = product?.Summary;
-                    item.Description = product?.Description;
-                    item.ImageFile = product?.ImageFile;
-                }
-            }
-
-            var orders = await this.orderService.GetOrderByUserNameAsync(userName);
-
-            var shoppingModel = new ShoppingModel
-            {
-                Orders = orders,
-                BasketWithProducts = basket,
                 UserName = userName
             };
+        }
 
-            return this.Ok(shoppingModel);
-        }
-        catch (Exception ex)
+        // iterate basket items and consume products with basket item productId members
+        foreach (var item in basket.Items)
         {
-            var error = ex.Message;
-            return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            if (item.ProductId is not null)
+            {
+                var product = await this.catalogService.GetCatalogAsync(item.ProductId);
+
+                // map product related members nto basketitem dto with extend column
+                item.ProductName = product?.Name;
+                item.Category = product?.Category;
+                item.Summary = product?.Summary;
+                item.Description = product?.Description;
+                item.ImageFile = product?.ImageFile;
+            }
         }
+
+        var orders = await this.orderService.GetOrderByUserNameAsync(userName);
+
+        var shoppingModel = new ShoppingModel
+        {
+            Orders = orders,
+            BasketWithProducts = basket,
+            UserName = userName
+        };
+
+        return this.Ok(shoppingModel);
+
+
     }
 }

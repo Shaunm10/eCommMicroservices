@@ -147,7 +147,8 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 | Portainer        | [http://localhost:9000](http://localhost:9000)               admin:password                       |
 | PGAdmin4         | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
 | RabbitMQ Console | [http://localhost:15672/](http://localhost:15672/) guest:guest 
-| OcelotGateway | [http://localhost:8010/](http://localhost:8010/)                       |
+| OcelotGateway | [http://localhost:8010/](http://localhost:8010/)
+| Shopping.Aggregator | [http://localhost:8005/swagger/index.html](http://localhost:8005/swagger/index.html)                        |
                       |
 
 http://localhost:15672/
