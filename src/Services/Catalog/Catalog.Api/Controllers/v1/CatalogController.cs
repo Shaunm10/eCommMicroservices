@@ -26,10 +26,11 @@ namespace Catalog.Api.Controllers.v1
             return this.Ok(products);
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet]
+        [Route("{id:length(24)}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> GetProductsById(string id)
+        public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await this._repository.GetProduct(id);
 

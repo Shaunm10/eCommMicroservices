@@ -1,8 +1,7 @@
-﻿using System;
-using Shopping.Aggregator.Extensions;
+﻿using Shopping.Aggregator.Extensions;
 using Shopping.Aggregator.Models;
 
-namespace Shopping.Aggregator.Services;
+namespace Shopping.Aggregator.ProxyServices;
 
 public class BasketService : IBasketService
 {
@@ -13,7 +12,7 @@ public class BasketService : IBasketService
         this._client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
-    public async Task<BasketModel?> GetBasket(string userName)
+    public async Task<BasketModel?> GetBasketAsync(string userName)
     {
         var response = await this._client.GetAsync($"/api/v1/Basket/{userName}");
 

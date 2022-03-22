@@ -147,7 +147,8 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 | Portainer        | [http://localhost:9000](http://localhost:9000)               admin:password                       |
 | PGAdmin4         | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
 | RabbitMQ Console | [http://localhost:15672/](http://localhost:15672/) guest:guest 
-| OcelotGateway | [http://localhost:8010/](http://localhost:8010/)                       |
+| OcelotGateway | [http://localhost:8010/](http://localhost:8010/)
+| Shopping.Aggregator | [http://localhost:8005/swagger/index.html](http://localhost:8005/swagger/index.html)                        |
                       |
 
 http://localhost:15672/
@@ -197,6 +198,7 @@ Different enhancements to add.
 - [ ] Add Auto registration of DI services -> [NetCore.AutoRegisterDi](https://www.thereformedprogrammer.net/asp-net-core-fast-and-automatic-dependency-injection-setup/)
 - [ ] Add GitHub CI
 - [ ] Make all configuration strongly typed objects
+- [ ] in the Shopping Aggerage controller refactor the code to be in a service. " put this all into a help service."
 - [ ] Add more Rosslyn Code analyzers
 - [ ] Add Serilog to all WebApi's
 - [ ] Add Debugging capability to VsCode Docker-compose

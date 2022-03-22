@@ -1,6 +1,6 @@
 using Shopping.Aggregator.Models;
 
-namespace Shopping.Aggregator.Services;
+namespace Shopping.Aggregator.ProxyServices;
 
 public interface ICatalogService
 {
@@ -8,5 +8,5 @@ public interface ICatalogService
 
     Task<IEnumerable<CatalogModel>> GetCatalogByCategory(string categoryName);
 
-    Task<CatalogModel?> GetCatalog(string id);
+    Task<CatalogModel?> GetCatalogAsync(string id);
 }

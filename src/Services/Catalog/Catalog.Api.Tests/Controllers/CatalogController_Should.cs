@@ -45,13 +45,13 @@ public class CatalogController_Should
     [Fact]
     public async Task ReturnProduct_From_GetProductsById()
     {
-          // arrange:
+        // arrange:
         var productId = RandomValue.String();
         var product = new Product();
         this.productRepositoryMock.Setup(x => x.GetProduct(productId)).ReturnsAsync(product);
 
         // act:
-        var response = await this.controllerUnderTest.GetProductsById(productId);
+        var response = await this.controllerUnderTest.GetProductById(productId);
 
         // assert:
         var okResult = response?.Result as OkObjectResult;
@@ -59,10 +59,10 @@ public class CatalogController_Should
         okResult?.Value.Should().BeSameAs(product);
     }
 
-     [Fact]
+    [Fact]
     public async Task ReturnNotFound_From_GetProductsById()
     {
-          // arrange:
+        // arrange:
         var productId = RandomValue.String();
         Product? product = null;
 
@@ -71,7 +71,7 @@ public class CatalogController_Should
             .ReturnsAsync(product);
 
         // act:
-        var response = await this.controllerUnderTest.GetProductsById(productId);
+        var response = await this.controllerUnderTest.GetProductById(productId);
 
         // assert:
         var notFoundResult = response?.Result as NotFoundResult;
@@ -91,7 +91,7 @@ public class CatalogController_Should
 
         // act:
         var response = await this.controllerUnderTest.GetProductsByCategory(category);
-  
+
         // assert:
         var okResult = response?.Result as OkObjectResult;
         okResult.Should().NotBeNull();
@@ -103,7 +103,7 @@ public class CatalogController_Should
     {
         // arrange:
         var productId = RandomValue.String();
-        var product =  new Product
+        var product = new Product
         {
             Id = productId
         };
@@ -130,7 +130,7 @@ public class CatalogController_Should
         // act:
         var response = await this.controllerUnderTest.UpdateProduct(product);
 
-         // assert:
+        // assert:
         var okResult = response as OkObjectResult;
         okResult.Should().NotBeNull();
         okResult?.Value.Should().Be(true);
@@ -148,7 +148,7 @@ public class CatalogController_Should
         // act:
         var result = await this.controllerUnderTest.DeleteProductById(productId);
 
-         // assert:
+        // assert:
         var okResult = result as OkObjectResult;
         okResult.Should().NotBeNull();
         okResult?.Value.Should().Be(true);

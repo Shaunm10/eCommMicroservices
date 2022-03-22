@@ -2,7 +2,7 @@
 using Shopping.Aggregator.Extensions;
 using Shopping.Aggregator.Models;
 
-namespace Shopping.Aggregator.Services;
+namespace Shopping.Aggregator.ProxyServices;
 
 public class CatalogService : ICatalogService
 {
@@ -20,7 +20,7 @@ public class CatalogService : ICatalogService
         return await response.ReadContentAs<List<CatalogModel>>() ?? new List<CatalogModel>();
     }
 
-    public async Task<CatalogModel?> GetCatalog(string id)
+    public async Task<CatalogModel?> GetCatalogAsync(string id)
     {
         var response = await this._client.GetAsync($"/api/v1/Catalog/{id}");
         return await response.ReadContentAs<CatalogModel?>() ?? null;

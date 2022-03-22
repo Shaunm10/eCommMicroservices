@@ -1,4 +1,4 @@
-using Shopping.Aggregator.Services;
+using Shopping.Aggregator.ProxyServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
