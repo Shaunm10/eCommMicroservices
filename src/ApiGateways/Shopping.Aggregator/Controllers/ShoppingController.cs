@@ -24,6 +24,7 @@ public class ShoppingController : ControllerBase
     [ProducesResponseType(typeof(ShoppingModel), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingModel>> GetShopping(string userName)
     {
+
         // get basket from userName
         var basket = await this.basketService.GetBasketAsync(userName);
 
@@ -62,5 +63,6 @@ public class ShoppingController : ControllerBase
         };
 
         return this.Ok(shoppingModel);
+
     }
 }
