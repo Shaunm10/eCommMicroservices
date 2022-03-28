@@ -161,7 +161,8 @@ http://localhost:15672/
 Different enhancements to add.
 
 - [ ] Version the Api for External consumers (Both Controllers and DTO/VM's)
-  - [ ] [Article](https://referbruv.com/blog/posts/integrating-aspnet-core-api-versions-with-swagger-ui)
+  - [ ] [Api versioning Article](https://referbruv.com/blog/posts/integrating-aspnet-core-api-versions-with-swagger-ui)
+  - [ ] [Additional Swagger enhancements] (https://www.dotnetnakama.com/blog/enriched-web-api-documentation-using-swagger-openapi-in-asp-dotnet-core/)
   - [ ] Basket.Api
   - [ ] Catalog.Api
   - [ ] Coupon.Api
@@ -169,6 +170,7 @@ Different enhancements to add.
 - [x] Create a Discount.Business project to hold services and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Improve Swagger DTO comments/usage.
+  - [ ] [Additional Swagger enhancements] (https://www.dotnetnakama.com/blog/enriched-web-api-documentation-using-swagger-openapi-in-asp-dotnet-core/)
 - [ ] Make the casing of private variables consistent.
 - [ ] Add Cancellation Tokens to all Api's
 - [ ] Add better exception validation responses to Order.Api
