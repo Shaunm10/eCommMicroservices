@@ -25,10 +25,6 @@ public class ShoppingController : ControllerBase
     public async Task<ActionResult<ShoppingModel>> GetShopping(string userName)
     {
 
-        // TODO: put this all into a help service.
-
-
-
         // get basket from userName
         var basket = await this.basketService.GetBasketAsync(userName);
 
@@ -67,7 +63,6 @@ public class ShoppingController : ControllerBase
         };
 
         return this.Ok(shoppingModel);
-
 
     }
 }

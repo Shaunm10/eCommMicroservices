@@ -144,12 +144,14 @@ INSERT INTO Discount (productid, description, amount) Values ('602d2149e773f2a39
 | Discount.Api     | [http://localhost:8002/swagger/index.html](http://localhost:8002/swagger/index.html) |
 | Order.Api        | [http://localhost:8004/swagger/index.html](http://localhost:8004/swagger/index.html) |
 | Discount.Grpc    | [http://localhost:8003](http://localhost:8003)                                       |
-| Portainer        | [http://localhost:9000](http://localhost:9000)               admin:password                       |
+| Portainer        | [http://localhost:9000](http://localhost:9000)               admin:password          |
 | PGAdmin4         | [http://localhost:5050/login?next=%2F](http://localhost:5050/login?next=%2F)         |
+
 | RabbitMQ Console | [http://localhost:15672/](http://localhost:15672/) guest:guest 
 | OcelotGateway | [http://localhost:8010/](http://localhost:8010/)
 | Shopping.Aggregator | [http://localhost:8005/swagger/index.html](http://localhost:8005/swagger/index.html)                        |
                       |
+
 
 http://localhost:15672/
 [Dapper Video](https://www.youtube.com/watch?v=dwMFg6uxQ0I)
@@ -159,7 +161,8 @@ http://localhost:15672/
 Different enhancements to add.
 
 - [ ] Version the Api for External consumers (Both Controllers and DTO/VM's)
-  - [ ] [Article](https://referbruv.com/blog/posts/integrating-aspnet-core-api-versions-with-swagger-ui)
+  - [ ] [Api versioning Article](https://referbruv.com/blog/posts/integrating-aspnet-core-api-versions-with-swagger-ui)
+  - [ ] [Additional Swagger enhancements] (https://www.dotnetnakama.com/blog/enriched-web-api-documentation-using-swagger-openapi-in-asp-dotnet-core/)
   - [ ] Basket.Api
   - [ ] Catalog.Api
   - [ ] Coupon.Api
@@ -167,6 +170,7 @@ Different enhancements to add.
 - [x] Create a Discount.Business project to hold services and DTO's
 - [ ] Dapper -> StoredProc in Coupon.Api?
 - [ ] Improve Swagger DTO comments/usage.
+  - [ ] [Additional Swagger enhancements] (https://www.dotnetnakama.com/blog/enriched-web-api-documentation-using-swagger-openapi-in-asp-dotnet-core/)
 - [ ] Make the casing of private variables consistent.
 - [ ] Add Cancellation Tokens to all Api's
 - [ ] Add better exception validation responses to Order.Api
