@@ -20,7 +20,8 @@ namespace AspnetRunBasics
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Orders = await _orderRepository.GetOrdersByUserName("test");
+            var orders = await _orderRepository.GetOrdersByUserName("test");
+            this.Orders = orders;
 
             return Page();
         }       
